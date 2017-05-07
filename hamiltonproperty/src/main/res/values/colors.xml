@@ -6,5 +6,8 @@
     <color name="windowsBackground">#FFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="grey">#d0d0d0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="button_press">#da5e0b</color>
+    <color name="button">#f37521</color>
 
 </resources>

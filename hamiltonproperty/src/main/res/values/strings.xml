@@ -8,4 +8,12 @@
     <string name="str_properties">Properties</string>
     <string name="str_shortlist">Shortlist</string>
     <string name="str_me">Me</string>
+    <string name="str_email">email</string>
+    <string name="str_password">password</string>
+    <string name="str_forgot_password"><![CDATA[<u>forgot password</u>]]></string>
+    <string name="str_sign_in_cap">LOGIN</string>
+    <string name="str_dont_have_account"><![CDATA[Don\'t have account <font color=\"#FF0000\">signup</Font>]]></string>
+    <string name="str_f">f</string>
+    <string name="str_t">T</string>
+    <string name="str_g">G</string>
 </resources>
