@@ -1,8 +1,16 @@
 package com.hamilton;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 
+import com.hamilton.fragment.MeFragment;
+import com.hamilton.fragment.PropertiesFragment;
+import com.hamilton.fragment.SearchFragment;
+import com.hamilton.fragment.ShortlistFragment;
+import com.hamilton.view.SwitchViewPager;
 import com.hamilton.view.ntb.NavigationTabBar;
 
 import java.util.ArrayList;
@@ -10,13 +18,16 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
     private NavigationTabBar navigationTabBar;
     private ArrayList<NavigationTabBar.Model> models;
+    SwitchViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        viewPager = (SwitchViewPager) findViewById(R.id.home_pager);
         navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb);
+        viewPager.setAdapter(new CustomPagerAdapter(getSupportFragmentManager()));
+        viewPager.setPagingEnabled(true);
         models = new ArrayList<>();
 
         models.add(
@@ -54,6 +65,51 @@ public class HomeActivity extends AppCompatActivity {
 
         navigationTabBar.setModels(models);
 
+        viewPager.setOffscreenPageLimit(0);
+        navigationTabBar.setViewPager(viewPager, 0);
+
     }
+
+    private class CustomPagerAdapter extends FragmentPagerAdapter {
+
+        public CustomPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+
+                {
+                    return new SearchFragment();
+                }//CALENDAR
+                case 1: {
+
+//Assignment
+                    return new PropertiesFragment();
+                }
+                case 2: {
+
+                    Fragment ff = new ShortlistFragment();
+                   /* Bundle bun = new Bundle();
+                    ff.setArguments(bun);*/
+                    return ff;
+
+                }
+                case 3: {
+                    return new MeFragment();
+                }
+                default:
+                    return new SearchFragment();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
+    }
+
 
 }

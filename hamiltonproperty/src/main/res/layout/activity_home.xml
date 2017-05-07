@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -8,23 +8,20 @@
     android:orientation="vertical"
     tools:context="com.hamilton.HomeActivity">
 
-    <FrameLayout
-        android:id="@+id/content"
+    <com.hamilton.view.SwitchViewPager
+        android:id="@+id/home_pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view"
+        android:background="@android:color/white"
+        android:dividerHeight="0.5dip" />
 
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/title_home" />
-
-    </FrameLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/ntb"
+        android:background="@color/grey" />
 
     <com.hamilton.view.ntb.NavigationTabBar
         android:id="@+id/ntb"
@@ -43,4 +40,4 @@
         app:ntb_title_size="10sp"
         app:ntb_titled="true" />
 
-</LinearLayout>
+</RelativeLayout>
