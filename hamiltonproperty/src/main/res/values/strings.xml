@@ -12,8 +12,17 @@
     <string name="str_password">password</string>
     <string name="str_forgot_password"><![CDATA[<u>forgot password</u>]]></string>
     <string name="str_sign_in_cap">LOGIN</string>
-    <string name="str_dont_have_account"><![CDATA[Don\'t have account <font color=\"#FF0000\">signup</Font>]]></string>
+    <string name="str_dont_have_account"><![CDATA[Don\'t have account?<font color=\"#f37521\">signup</Font>]]></string>
+    <string name="str_already_have_account"><![CDATA[I have already account.<font color=\"#f37521\">login</Font>]]></string>
     <string name="str_f">f</string>
     <string name="str_t">T</string>
     <string name="str_g">G</string>
+    <string name="str_name">name</string>
+    <string name="str_phone">phone</string>
+    <string name="str_sign_up">SIGN UP</string>
+    <string name="error">Error</string>
+    <string name="err_username">Please enter a valid username</string>
+    <string name="err_password">Please enter a valid password</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <string name="err_password_confirm">Password and Confirm Password are not same</string>
 </resources>
