@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Hamilton</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="str_search">Search</string>
+    <string name="str_properties">Properties</string>
+    <string name="str_shortlist">Shortlist</string>
+    <string name="str_me">Me</string>
+</resources>
