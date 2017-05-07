@@ -24,7 +24,7 @@
             <ImageView
                 android:layout_width="160dp"
                 android:layout_height="99dp"
-                android:layout_margin="50dip"
+                android:layout_margin="20dip"
                 android:adjustViewBounds="true"
                 android:src="@drawable/logo_login" />
 
