@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hamilton.HomeActivity">
+
+    <com.hamilton.view.SwitchViewPager
+        android:id="@+id/home_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view"
+        android:background="@android:color/white"
+        android:dividerHeight="0.5dip" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/ntb"
+        android:background="@color/grey" />
+
+    <com.hamilton.view.ntb.NavigationTabBar
+        android:id="@+id/ntb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_tab_height"
+        android:layout_alignParentBottom="true"
+        android:paddingRight="3dp"
+        app:ntb_active_color="@color/colorPrimary"
+        app:ntb_animation_duration="200"
+        app:ntb_badge_size="10sp"
+        app:ntb_bg_color="#FFF"
+        app:ntb_inactive_color="#9FACB1"
+        app:ntb_scaled="false"
+        app:ntb_swiped="true"
+        app:ntb_title_mode="all"
+        app:ntb_title_size="10sp"
+        app:ntb_titled="true" />
+
+</RelativeLayout>
