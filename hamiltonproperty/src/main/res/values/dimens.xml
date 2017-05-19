@@ -4,5 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="bottom_tab_height">60dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="dimen_20">150dp</dimen>
+    <dimen name="dimen_20">15dp</dimen>
 </resources>
