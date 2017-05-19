@@ -14,16 +14,18 @@
 
     <style name="style_textbox">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:minHeight">@dimen/button_height</item>
-        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="android:textColorHint">@color/white_60</item>
         <item name="android:textStyle">normal</item>
         <item name="android:paddingLeft">10dip</item>
+        <item name="android:textCursorDrawable">@null</item>
         <item name="android:paddingRight">10dip</item>
         <item name="android:paddingTop">5dip</item>
+        <item name="android:gravity">center</item>
         <item name="android:paddingBottom">5dip</item>
         <item name="android:letterSpacing">.02</item>
-        <item name="android:background">@drawable/rounded_textbox</item>
+        <item name="android:background">@drawable/text_selector</item>
     </style>
 
     <style name="style_textview">
@@ -54,4 +56,6 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <color name="white_60">#BFffffff</color>
 </resources>
