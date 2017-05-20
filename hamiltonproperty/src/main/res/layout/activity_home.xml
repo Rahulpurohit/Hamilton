@@ -29,7 +29,7 @@
         android:layout_height="@dimen/bottom_tab_height"
         android:layout_alignParentBottom="true"
         android:paddingRight="3dp"
-        app:ntb_active_color="@color/colorPrimary"
+        app:ntb_active_color="#9FACB1"
         app:ntb_animation_duration="200"
         app:ntb_badge_size="10sp"
         app:ntb_bg_color="#FFF"
