@@ -33,34 +33,34 @@ public class HomeActivity extends AppCompatActivity {
 
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.search),
+                        getResources().getDrawable(R.drawable.icon_search_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_search))
-                        .selectedIcon(getResources().getDrawable(R.drawable.hover_temp))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_search_hover))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.properties),
+                        getResources().getDrawable(R.drawable.icon_home_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_properties))
-                        .selectedIcon(getResources().getDrawable(R.drawable.tab_selected_property))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_hover))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.shortlist),
+                        getResources().getDrawable(R.drawable.icon_favourite_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_shortlist))
-                        .selectedIcon(getResources().getDrawable(R.drawable.tab_selected_shortlist))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_favourite_hover))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.me),
+                        getResources().getDrawable(R.drawable.icon_user_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_me))
-                        .selectedIcon(getResources().getDrawable(R.drawable.tab_selected_me))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_hover))
                         .build()
         );
 
