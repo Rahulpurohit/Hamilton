@@ -1,6 +1,6 @@
 package com.hamilton.application;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,7 +12,6 @@ import com.hamilton.utility.ShareData;
 import com.hamilton.utility.Utils;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -26,9 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by HP on 24-05-2017.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
     private static MyApplication myApplication;
-    public static final String BASE_URL = "http://hamiltonpropertygroup.com.au/web";
+    public static final String BASE_URL = "http://hamiltonpropertygroup.com.au/";
     public User loginData;
 
     @Override
@@ -36,7 +35,6 @@ public class MyApplication extends Application {
         super.onCreate();
         setApplication(this);
     }
-
 
 
     public static void setApplication(MyApplication myApplication) {

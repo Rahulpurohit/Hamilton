@@ -5,17 +5,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginRequest {
 
-    @SerializedName("email")
+    @SerializedName("username")
     @Expose
-    private String email;
+    private String username;
 
     @SerializedName("password")
     @Expose
     private String password;
 
+    @SerializedName("key")
+    @Expose
+    private String key;
 
-    public LoginRequest(String email, String password) {
-        this.email = email;
+
+    public LoginRequest(String key, String username, String password) {
+        this.key = key;
+        this.username = username;
         this.password = password;
     }
 }

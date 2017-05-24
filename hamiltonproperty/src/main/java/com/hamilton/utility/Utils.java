@@ -99,7 +99,7 @@ public class Utils {
 
     public static Request.Builder addHeaderValues(Request.Builder builder, Context context) {
         //String authenticationToken = MyApplication.getApplication().getUser() != null ? MyApplication.getApplication().getUser().getAuthToken() : null;
-        String authenticationToken = "";
+        String authenticationToken = null;
 
         if (builder != null) {
             builder.addHeader("content-type", "application/json; charset=utf-8");

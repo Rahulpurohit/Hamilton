@@ -1,8 +1,9 @@
 package com.hamilton.modal;
 
-import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 
 /*{
         "result": {
@@ -18,12 +19,20 @@ import com.google.gson.annotations.SerializedName;
         }
         }*/
 
-public class User implements Serializable{
+public class User implements Serializable {
     @SerializedName("result")
     @Expose
     public Result result;
 
-    public class Result {
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
+    public class Result implements Serializable {
 
         @SerializedName("status")
         @Expose
@@ -59,7 +68,7 @@ public class User implements Serializable{
             this.msg = msg;
         }
 
-        public class Data {
+        public class Data implements Serializable {
 
             @SerializedName("ValidUser")
             @Expose

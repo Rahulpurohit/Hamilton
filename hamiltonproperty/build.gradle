@@ -20,6 +20,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.hamilton"
+        multiDexEnabled = true
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
@@ -43,6 +44,8 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.0'
     compile 'com.android.support:support-vector-drawable:25.1.0'
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
@@ -50,6 +53,4 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-
 }

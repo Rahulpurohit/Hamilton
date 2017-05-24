@@ -14,8 +14,9 @@
         android:background="@android:color/transparent"
         android:src="@drawable/loading_img" />
 
-    <com.edoptim.ywparentapp.view.TypefacedTextView style="@style/style_textview"
+    <com.hamilton.view.TypefacedTextView
         android:id="@+id/textView"
+        style="@style/style_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dip"
