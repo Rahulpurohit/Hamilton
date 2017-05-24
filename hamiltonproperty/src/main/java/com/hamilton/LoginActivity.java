@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnLoginUser)
     public void LoginButtonClicked() {
-        /*if (TextUtils.isEmpty(txt_signup_username.getText())) {
+        if (TextUtils.isEmpty(txt_signup_username.getText())) {
             Utils.showErrorBox(this, getResources().getString(R.string.error), getResources().getString(R.string.err_username));
             //setError(getString(R.string.err_username));
             return;
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             Utils.showErrorBox(this, getResources().getString(R.string.error), getResources().getString(R.string.err_password));
 
             return;
-        } else*/ {
+        } else {
             startActivity(new Intent(this, HomeActivity.class));
         }
     }

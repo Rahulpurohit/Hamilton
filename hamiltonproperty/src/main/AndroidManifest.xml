@@ -29,7 +29,8 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".ForgotPasswordActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".ApiResponseActivity"></activity>
     </application>
 
 </manifest>
