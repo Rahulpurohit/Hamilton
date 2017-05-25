@@ -25,7 +25,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnLoginUser)
     public void LoginButtonClicked() {
-        if (TextUtils.isEmpty(txt_signup_username.getText())) {
+        startActivity(new Intent(this,ApiResponseActivity.class));
+        /*if (TextUtils.isEmpty(txt_signup_username.getText())) {
             Utils.showErrorBox(this, getResources().getString(R.string.error), getResources().getString(R.string.err_username));
             //setError(getString(R.string.err_username));
             return;
@@ -41,7 +42,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             return;
         } else {
             startActivity(new Intent(this, HomeActivity.class));
-        }
+        }*/
     }
 
 

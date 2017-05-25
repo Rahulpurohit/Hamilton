@@ -26,40 +26,41 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         viewPager = (SwitchViewPager) findViewById(R.id.home_pager);
         navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb);
+        navigationTabBar.setIsTinted(false);
         viewPager.setAdapter(new CustomPagerAdapter(getSupportFragmentManager()));
         viewPager.setPagingEnabled(true);
         models = new ArrayList<>();
 
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.icon_home),
+                        getResources().getDrawable(R.drawable.icon_search_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_search))
-                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_selected))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_search_hover))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.icon_home),
+                        getResources().getDrawable(R.drawable.icon_home_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_properties))
-                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_selected))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_hover))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.icon_home),
+                        getResources().getDrawable(R.drawable.icon_favourite_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_shortlist))
-                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_selected))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_favourite_hover))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.icon_home),
+                        getResources().getDrawable(R.drawable.icon_user_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_me))
-                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_selected))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_hover))
                         .build()
         );
 

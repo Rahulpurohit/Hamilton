@@ -9,5 +9,7 @@
     <color name="white">#FFFFFF</color>
     <color name="button_press">#da5e0b</color>
     <color name="button">#f37521</color>
+    <color name="white_10">#26FFFFFF</color>
+    <color name="white_5">#0DFFFFFF</color>
 
 </resources>
