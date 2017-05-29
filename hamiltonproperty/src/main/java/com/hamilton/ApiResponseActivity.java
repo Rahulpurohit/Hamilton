@@ -24,7 +24,7 @@ public class ApiResponseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_api_response);
-        getApiData("cogency","hamiltonpropertygroup_admin");
+        getApiData("cogency", "hamiltonpropertygroup_admin");
     }
 
 
@@ -75,17 +75,20 @@ public class ApiResponseActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<String> userCall = MyApplication.getApplication().getClient().submitAssignment(Constants.key, username, password);
-        userCall.enqueue(new Callback<String>() {
+        Call<User> userCall = MyApplication.getApplication().getClient().getUser(new LoginRequest(Constants.key, username, password));
+        userCall.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 Log.e("res body :- ", "" + response.body());
                 if (mDialog.isShowing())
                     mDialog.dismiss();
                 if (response.isSuccessful()) {
-                    Toast.makeText(ApiResponseActivity.this,"res=="+response.body() ,Toast.LENGTH_SHORT).show();
-                    /*User user = response.body();
-                    MyApplication.getApplication().setUser(user);*/
+                    User user = response.body();
+
+                    Toast.makeText(ApiResponseActivity.this, "res==" + user.getResult().getMsg(), Toast.LENGTH_SHORT).show();
+
+
+                    MyApplication.getApplication().setUser(user);
 
                 } else {
                     final String errorResponse = Utils.convertStreamToString(response.errorBody().byteStream());
@@ -96,11 +99,11 @@ public class ApiResponseActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
 
                 if (mDialog.isShowing())
                     mDialog.dismiss();
-                Toast.makeText(ApiResponseActivity.this,"erro=="+t ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(ApiResponseActivity.this, "error==" + t, Toast.LENGTH_SHORT).show();
 
                 Log.e("User data", "Error");
             }

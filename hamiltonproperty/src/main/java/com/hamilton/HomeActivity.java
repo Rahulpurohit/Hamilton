@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
                         getResources().getDrawable(R.drawable.icon_user_b),
                         getResources().getColor(R.color.transparent))
                         .title(getResources().getString(R.string.str_me))
-                        .selectedIcon(getResources().getDrawable(R.drawable.icon_home_hover))
+                        .selectedIcon(getResources().getDrawable(R.drawable.icon_user_hover))
                         .build()
         );
 
