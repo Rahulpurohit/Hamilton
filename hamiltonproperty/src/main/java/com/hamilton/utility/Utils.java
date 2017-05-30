@@ -97,20 +97,18 @@ public class Utils {
         return false;
     }
 
-    /*public static Request.Builder addHeaderValues(Request.Builder builder, Context context) {
-        //String authenticationToken = MyApplication.getApplication().getUser() != null ? MyApplication.getApplication().getUser().getAuthToken() : null;
-        String authenticationToken = null;
-
+    public static Request.Builder addHeaderValues(Request.Builder builder, Context context) {
+        String authenticationToken = null;//MyApplication.getApplication().getUser() != null ? MyApplication.getApplication().getUser().getAuthToken() : null;
         if (builder != null) {
-            builder.addHeader("content-type", "multipart/form-data"*//*"application/json; charset=utf-8"*//*);
+           /* builder.addHeader("content-type", "application/x-www-form-urlencoded;charset=utf-8");
             builder.addHeader("cache-control", "no-cache");
-
-            if (authenticationToken != null && !authenticationToken.isEmpty()) {
+*/
+            if (!TextUtils.isEmpty(authenticationToken)) {
                 builder.addHeader("authorization", authenticationToken);
             }
         }
         return builder;
-    }*/
+    }
 
     public static String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
