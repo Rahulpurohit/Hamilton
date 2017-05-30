@@ -75,7 +75,7 @@ public class ApiResponseActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<User> userCall = MyApplication.getApplication().getClient().getUser(new LoginRequest(Constants.key, username, password));
+        Call<User> userCall = MyApplication.getApplication().getClient().getUser("multipart/form-data", new LoginRequest(Constants.key, username, password));
         userCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

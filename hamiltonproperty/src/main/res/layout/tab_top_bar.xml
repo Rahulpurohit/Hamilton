@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/radio_tab_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RadioButton
+            style="@style/style_radio_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tab_height"
+            android:layout_weight="1"
+            android:background="@drawable/tab_top_bar_selector_first"
+            android:button="@null"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:paddingBottom="0dp"
+            android:paddingTop="0dp"
+            android:text="@string/str_buy_cap"
+            android:textColor="@drawable/selected_tab"
+            android:textSize="18dp" />
+
+        <RadioButton
+            style="@style/style_radio_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tab_height"
+            android:layout_weight="1"
+            android:background="@drawable/tab_top_bar_selector_last"
+            android:button="@null"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:paddingBottom="0dp"
+            android:paddingTop="0dp"
+            android:text="@string/str_rent_cap"
+            android:textColor="@drawable/selected_tab"
+            android:textSize="18dp" />
+    </RadioGroup>
+</LinearLayout>

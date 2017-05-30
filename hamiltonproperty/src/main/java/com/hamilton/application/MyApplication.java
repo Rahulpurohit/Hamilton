@@ -45,14 +45,13 @@ public class MyApplication extends MultiDexApplication {
         return myApplication;
     }
 
-    Interceptor interceptor = new Interceptor() {
+   /* Interceptor interceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request newRequest = Utils.addHeaderValues(chain.request().newBuilder(), MyApplication.this).build();
-            Response resp = chain.proceed(newRequest);
-            return resp;
+            return chain.proceed(newRequest);
         }
-    };
+    };*/
 
     public ApiInterface getClient() {
 
@@ -60,7 +59,6 @@ public class MyApplication extends MultiDexApplication {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.interceptors().add(interceptor);
         builder.interceptors().add(logging);
         OkHttpClient client = builder.build();
 

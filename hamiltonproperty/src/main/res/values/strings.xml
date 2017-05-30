@@ -25,4 +25,8 @@
     <string name="err_password">Please enter a valid password</string>
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
     <string name="err_password_confirm">Password and Confirm Password are not same</string>
+    <string name="str_buy_cap">BUY</string>
+    <string name="str_rent_cap">RENT</string>
+    <string name="str_hint_search">Search</string>
+    <string name="str_our_offers">OUR OFFERS</string>
 </resources>
