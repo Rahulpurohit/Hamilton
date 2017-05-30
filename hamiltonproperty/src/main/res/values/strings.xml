@@ -29,4 +29,11 @@
     <string name="str_rent_cap">RENT</string>
     <string name="str_hint_search">Search</string>
     <string name="str_our_offers">OUR OFFERS</string>
+    <string name="str_account_cap">ACCOUNT</string>
+    <string name="str_logout_cap">LOGOUT</string>
+    <string name="str_building_info">Building Information</string>
+    <string name="str_land_info">Land Information</string>
+    <string name="str_building_updates">Building Updates</string>
+    <string name="str_customer_care">Customer Care</string>
+    <string name="str_feedback">Feedback</string>
 </resources>
