@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,141 +14,140 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:src="@drawable/logo" />
     </RelativeLayout>
 
-    <com.hamilton.view.TypefacedTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/str_account_cap"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
-
-    <com.hamilton.view.TypefacedTextView
-        android:id="@+id/lblAccountEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="akshay@gmail.com"
-        android:textColor="@color/black"
-        android:textSize="15dp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/dark_grey" />
-
-    <com.hamilton.view.TypefacedTextView
-        android:id="@+id/lblAccountLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/str_logout_cap"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
-
     <LinearLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-        <RadioGroup
-            android:id="@+id/radio_tab_group"
-            android:layout_width="0dp"
+        <!-- our toolbar -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <RadioButton
-                style="@style/style_radio_button"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/tab_height"
-                android:layout_weight="1"
-                android:background="@drawable/tab_account_selector"
-                android:button="@null"
-                android:minHeight="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="0dp"
-                android:text="@string/str_building_info"
-                android:textColor="@drawable/selected_tab"
-                android:textSize="16dp" />
+        <!-- our tablayout to display tabs  -->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabIndicatorColor="#d0d0d0"
+            app:tabIndicatorHeight="3dp"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="#bfffffff" />
 
-            <RadioButton
-                style="@style/style_radio_button"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/tab_height"
-                android:layout_weight="1"
-                android:background="@drawable/tab_account_selector"
-                android:button="@null"
-                android:minHeight="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="0dp"
-                android:text="@string/str_land_info"
-                android:textColor="@drawable/selected_tab"
-                android:textSize="16dp" />
+        <!-- View pager to swipe views -->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent" />
 
-            <RadioButton
-                style="@style/style_radio_button"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/tab_height"
-                android:layout_weight="1"
-                android:background="@drawable/tab_account_selector"
-                android:button="@null"
-                android:minHeight="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="0dp"
-                android:text="@string/str_building_updates"
-                android:textColor="@drawable/selected_tab"
-                android:textSize="16dp" />
-
-            <RadioButton
-                style="@style/style_radio_button"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/tab_height"
-                android:layout_weight="1"
-                android:background="@drawable/tab_account_selector"
-                android:button="@null"
-                android:minHeight="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="0dp"
-                android:text="@string/str_customer_care"
-                android:textColor="@drawable/selected_tab"
-                android:textSize="16dp" />
-
-            <RadioButton
-                style="@style/style_radio_button"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/tab_height"
-                android:layout_weight="1"
-                android:background="@drawable/tab_account_selector"
-                android:button="@null"
-                android:minHeight="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="0dp"
-                android:text="@string/str_feedback"
-                android:textColor="@drawable/selected_tab"
-                android:textSize="16dp" />
-        </RadioGroup>
     </LinearLayout>
 
+    <!-- <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:weightSum="2">
+
+         <RadioGroup
+             android:id="@+id/radio_tab_group"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:orientation="vertical">
+
+             <RadioButton
+                 style="@style/style_radio_button"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/tab_height"
+                 android:layout_weight="1"
+                 android:background="@drawable/tab_account_selector"
+                 android:button="@null"
+                 android:minHeight="0dp"
+                 android:paddingBottom="0dp"
+                 android:paddingLeft="10dp"
+                 android:paddingTop="0dp"
+                 android:text="@string/str_building_info"
+                 android:textColor="@drawable/selected_tab"
+                 android:textSize="16dp" />
+
+             <RadioButton
+                 style="@style/style_radio_button"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/tab_height"
+                 android:layout_weight="1"
+                 android:background="@drawable/tab_account_selector"
+                 android:button="@null"
+                 android:minHeight="0dp"
+                 android:paddingBottom="0dp"
+                 android:paddingLeft="10dp"
+                 android:paddingTop="0dp"
+                 android:text="@string/str_land_info"
+                 android:textColor="@drawable/selected_tab"
+                 android:textSize="16dp" />
+
+             <RadioButton
+                 style="@style/style_radio_button"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/tab_height"
+                 android:layout_weight="1"
+                 android:background="@drawable/tab_account_selector"
+                 android:button="@null"
+                 android:minHeight="0dp"
+                 android:paddingBottom="0dp"
+                 android:paddingLeft="10dp"
+                 android:paddingTop="0dp"
+                 android:text="@string/str_building_updates"
+                 android:textColor="@drawable/selected_tab"
+                 android:textSize="16dp" />
+
+             <RadioButton
+                 style="@style/style_radio_button"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/tab_height"
+                 android:layout_weight="1"
+                 android:background="@drawable/tab_account_selector"
+                 android:button="@null"
+                 android:minHeight="0dp"
+                 android:paddingBottom="0dp"
+                 android:paddingLeft="10dp"
+                 android:paddingTop="0dp"
+                 android:text="@string/str_customer_care"
+                 android:textColor="@drawable/selected_tab"
+                 android:textSize="16dp" />
+
+             <RadioButton
+                 style="@style/style_radio_button"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/tab_height"
+                 android:layout_weight="1"
+                 android:background="@drawable/tab_account_selector"
+                 android:button="@null"
+                 android:minHeight="0dp"
+                 android:paddingBottom="0dp"
+                 android:paddingLeft="10dp"
+                 android:paddingTop="0dp"
+                 android:text="@string/str_feedback"
+                 android:textColor="@drawable/selected_tab"
+                 android:textSize="16dp" />
+         </RadioGroup>
+     </LinearLayout>
+
+ -->
 </LinearLayout>
