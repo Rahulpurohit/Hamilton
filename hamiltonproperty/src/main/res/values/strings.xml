@@ -37,4 +37,7 @@
     <string name="str_customer_care">Customer Care</string>
     <string name="str_feedback">Feedback</string>
     <string name="str_account_setting">Account Settings</string>
+    <string name="str_new_password">new Password</string>
+    <string name="str_confirm_password">confirm Password</string>
+    <string name="str_enter_email_first">Please enter email first</string>
 </resources>

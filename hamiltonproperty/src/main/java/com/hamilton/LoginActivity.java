@@ -7,7 +7,9 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.hamilton.utility.Constants;
 import com.hamilton.utility.Utils;
 
 import butterknife.BindView;
@@ -52,7 +54,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.lblForgotPassword)
     public void ForgotPassword() {
-        startActivity(new Intent(this, ForgotPasswordActivity.class));
+        if (TextUtils.isEmpty(txt_signup_username.getText())) {
+            Toast.makeText(getApplicationContext(), getString(R.string.str_enter_email_first), Toast.LENGTH_LONG).show();
+        } else {
+            startActivity(new Intent(this, ForgotPasswordActivity.class).putExtra(Constants.KEY_USERNAME, txt_signup_username.getText().toString()));
+        }
 
     }
 

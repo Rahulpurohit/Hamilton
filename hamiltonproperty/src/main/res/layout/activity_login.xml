@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -11,7 +12,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1.0"
         android:fillViewport="true"
-        android:background="@drawable/bg_login"
         android:paddingLeft="30dip"
         android:paddingRight="30dip">
 
@@ -84,7 +84,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/lblSignUpWithFb"
@@ -129,6 +130,7 @@
                     style="@style/style_button_blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="80dp"
                     android:layout_marginTop="20dip"
                     android:clickable="true"
                     android:minWidth="180dp"
@@ -147,7 +149,8 @@
                     android:text="@string/str_dont_have_account"
                     android:textColor="@color/white_60"
                     android:textSize="14dip"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
