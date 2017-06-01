@@ -5,15 +5,16 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hamilton.R;
-import com.hamilton.application.MyApplication;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -129,6 +130,12 @@ public class Utils {
             }
         }
         return sb.toString();
+    }
+
+
+    public static void addBulletStyle(TextView tv, String text) {
+        tv.append(Html.fromHtml(tv.getContext().getResources().getString(R.string.str_bullet, "<font color='#000000'>" + text + "</font>")));
+        tv.append("\n");
     }
 
 
