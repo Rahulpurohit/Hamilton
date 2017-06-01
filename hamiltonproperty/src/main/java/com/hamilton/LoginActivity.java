@@ -120,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void callHomeScreen() {
-        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         finish();
     }
 

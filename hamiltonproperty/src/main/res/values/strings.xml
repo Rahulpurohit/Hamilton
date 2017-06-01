@@ -55,4 +55,9 @@
     <string name="str_land_size">Land Size</string>
     <string name="str_toilets">Toilets</string>
     <string name="str_bullet">\u2022 %1$s</string>
+    <string name="str_supervisior_number">Supervisor Number</string>
+    <string name="stage_progress_photo">Stage Progress Photo</string>
+    <string name="supervisor_name">Supervisor Name:</string>
+    <string name="supervisor_email">Supervisor Email:</string>
+    <string name="supervisor_phone">Phone:</string>
 </resources>
