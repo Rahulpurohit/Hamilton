@@ -24,8 +24,9 @@ import butterknife.OnClick;
 
 //Our class extending fragment
 public class Tab6 extends Fragment {
+
     @BindView(R.id.lblAccountEmail)
-    TextView lblAccountEmail;
+    public TextView lblAccountEmail;
 
     @BindView(R.id.llAccountSettings)
     View llAccountSettings;
@@ -44,17 +45,11 @@ public class Tab6 extends Fragment {
         startActivity(new Intent(getActivity(), LoginActivity.class));
     }
 
-    //Overriden method onCreateView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-        View rootView = inflater.inflate(R.layout.fragment_me, container, false);
-
-        ButterKnife.bind(rootView);
-
-
+        View rootView = inflater.inflate(R.layout.tab6, container, false);
+        ButterKnife.bind(this, rootView);
         if (MyApplication.getApplication().getUser() != null) {
             lblAccountEmail.setText(MyApplication.getApplication().getUser().getResult().getData().getUserEmail());
             llAccountSettings.setVisibility(View.VISIBLE);
@@ -66,5 +61,11 @@ public class Tab6 extends Fragment {
 
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 }
