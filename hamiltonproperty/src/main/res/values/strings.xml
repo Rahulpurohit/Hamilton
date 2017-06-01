@@ -40,4 +40,6 @@
     <string name="str_new_password">new Password</string>
     <string name="str_confirm_password">confirm Password</string>
     <string name="str_enter_email_first">Please enter email first</string>
+    <string name="str_login_for_detail">You are not Logged in Please Login for more details</string>
+    <string name="str_tap_to_login">Tap to Login</string>
 </resources>
