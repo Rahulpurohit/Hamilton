@@ -37,4 +37,22 @@
     <string name="str_customer_care">Customer Care</string>
     <string name="str_feedback">Feedback</string>
     <string name="str_account_setting">Account Settings</string>
+    <string name="str_new_password">new Password</string>
+    <string name="str_confirm_password">confirm Password</string>
+    <string name="str_enter_email_first">Please enter email first</string>
+    <string name="str_login_for_detail">You are not Logged in Please Login for more details</string>
+    <string name="str_tap_to_login">Tap to Login</string>
+    <string name="str_buy">Buy</string>
+    <string name="str_rent">Rent</string>
+    <string name="str_price_range">Price Range</string>
+    <string name="str_any">Any</string>
+    <string name="str_property_type">Property Type</string>
+
+    <string name="font_light">fonts/Roboto_Light.ttf</string>
+    <string name="str_bedrooms">Bedrooms</string>
+    <string name="str_bathrooms">Bathrooms</string>
+    <string name="str_car_parks">Car Parks</string>
+    <string name="str_land_size">Land Size</string>
+    <string name="str_toilets">Toilets</string>
+    <string name="str_bullet">\u2022 %1$s</string>
 </resources>

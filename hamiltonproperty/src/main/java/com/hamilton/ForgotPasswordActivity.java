@@ -3,19 +3,15 @@ package com.hamilton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.widget.EditText;
 
-import com.hamilton.utility.Utils;
+import com.hamilton.utility.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
-
-    @BindView(R.id.txt_signup_username)
-    EditText txt_signup_username;
 
     @BindView(R.id.txt_signup_password)
     EditText txt_signup_password;
@@ -25,12 +21,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnLoginUser)
     public void LoginButtonClicked() {
-        startActivity(new Intent(this,ApiResponseActivity.class));
-        /*if (TextUtils.isEmpty(txt_signup_username.getText())) {
-            Utils.showErrorBox(this, getResources().getString(R.string.error), getResources().getString(R.string.err_username));
-            //setError(getString(R.string.err_username));
-            return;
-        } else if (TextUtils.isEmpty(txt_signup_password.getText())) {
+        startActivity(new Intent(this, ApiResponseActivity.class));
+        String email = getIntent().getStringExtra(Constants.KEY_USERNAME);
+        /*if (TextUtils.isEmpty(txt_signup_password.getText())) {
             //setError(getString(R.string.err_password));
             Utils.showErrorBox(this, getResources().getString(R.string.error), getResources().getString(R.string.err_password));
 

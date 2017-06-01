@@ -41,4 +41,10 @@
         <attr name="ntb_bg_color" format="color" />
         <attr name="ntb_preview_colors" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="TwoHintEditText">
+        <attr name="left_hint" format="string" />
+        <attr name="right_hint" format="string" />
+        <attr name="inputtype" format="string" />
+    </declare-styleable>
 </resources>

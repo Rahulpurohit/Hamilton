@@ -24,14 +24,17 @@
         android:paddingTop="15dp">
 
         <com.hamilton.view.TypefacedEditText
+            android:id="@+id/txt_search"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/search_inputfill_2"
             android:drawableLeft="@drawable/icon_search_b"
             android:drawablePadding="5dp"
             android:hint="@string/str_hint_search"
+            android:imeOptions="actionSearch"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp" />
+            android:paddingRight="20dp"
+            android:singleLine="true" />
 
     </LinearLayout>
 

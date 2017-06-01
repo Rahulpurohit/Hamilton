@@ -15,17 +15,24 @@ import com.hamilton.view.ntb.NavigationTabBar;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomeActivity extends AppCompatActivity {
-    private NavigationTabBar navigationTabBar;
+    //private NavigationTabBar navigationTabBar;
     private ArrayList<NavigationTabBar.Model> models;
+
+    @BindView(R.id.home_pager)
     SwitchViewPager viewPager;
+
+    @BindView(R.id.ntb)
+    NavigationTabBar navigationTabBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        viewPager = (SwitchViewPager) findViewById(R.id.home_pager);
-        navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb);
+        ButterKnife.bind(this);
         navigationTabBar.setIsTinted(false);
         viewPager.setAdapter(new CustomPagerAdapter(getSupportFragmentManager()));
         viewPager.setPagingEnabled(true);

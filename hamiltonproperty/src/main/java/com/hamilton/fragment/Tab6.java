@@ -4,24 +4,68 @@ package com.hamilton.fragment;
  * Created by HP on 31-05-2017.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.hamilton.HomeActivity;
+import com.hamilton.LoginActivity;
 import com.hamilton.R;
+import com.hamilton.application.MyApplication;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 //Our class extending fragment
 public class Tab6 extends Fragment {
 
-    //Overriden method onCreateView
+    @BindView(R.id.lblAccountEmail)
+    public TextView lblAccountEmail;
+
+    @BindView(R.id.llAccountSettings)
+    View llAccountSettings;
+
+    @BindView(R.id.llAccountSettingsLogin)
+    View llAccountSettingsLogin;
+
+    @OnClick(R.id.lblAccountLogout)
+    public void LogoutButtonClicked() {
+        MyApplication.getApplication().setUser(null);
+        startActivity(new Intent(getActivity(), HomeActivity.class));
+    }
+
+    @OnClick(R.id.btnLoginUser)
+    public void LoginButtonClicked() {
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-        return inflater.inflate(R.layout.tab6, container, false);
+        View rootView = inflater.inflate(R.layout.tab6, container, false);
+        ButterKnife.bind(this, rootView);
+        if (MyApplication.getApplication().getUser() != null) {
+            lblAccountEmail.setText(MyApplication.getApplication().getUser().getResult().getData().getUserEmail());
+            llAccountSettings.setVisibility(View.VISIBLE);
+            llAccountSettingsLogin.setVisibility(View.GONE);
+        } else {
+            llAccountSettings.setVisibility(View.GONE);
+            llAccountSettingsLogin.setVisibility(View.VISIBLE);
+        }
+
+
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 }

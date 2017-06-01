@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp">
+
+        <com.hamilton.view.TypefacedEditText
+            android:id="@+id/txt_search"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/search_inputfill_2"
+            android:drawableLeft="@drawable/icon_search_b"
+            android:drawablePadding="5dp"
+            android:hint="@string/str_hint_search"
+            android:imeOptions="actionSearch"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radio_tab_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:weightSum="2">
+
+        <RadioButton
+            style="@style/style_radio_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/tab_filter_first"
+            android:button="@null"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:paddingBottom="0dp"
+            android:paddingTop="0dp"
+            android:text="@string/str_buy"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <RadioButton
+            style="@style/style_radio_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/tab_filter_last"
+            android:button="@null"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:paddingBottom="0dp"
+            android:paddingTop="0dp"
+            android:text="@string/str_rent"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+    </RadioGroup>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.hamilton.view.TwoHintEditText
+                android:id="@+id/txt_filter_price_range"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:left_hint="@string/str_price_range"
+                app:right_hint="@string/str_any">
+
+            </com.hamilton.view.TwoHintEditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorHeader" />
+
+            <com.hamilton.view.TwoHintEditText
+                android:id="@+id/txt_filter_property_type"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:focusable="false"
+                app:left_hint="@string/str_property_type"
+                app:right_hint="@string/str_any">
+
+            </com.hamilton.view.TwoHintEditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorHeader" />
+
+            <LinearLayout
+                android:id="@+id/llContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.hamilton.view.TypefacedTextView
+        android:id="@+id/lblSearch"
+        style="@style/style_button_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/submit_button"
+        android:text="@string/str_search"
+        android:textColor="@color/black" />
+
+</LinearLayout>

@@ -26,10 +26,13 @@
         <item name="android:paddingBottom">5dip</item>
         <item name="android:letterSpacing">.02</item>
         <item name="android:background">@drawable/text_selector</item>
+        <item name="typeface">@string/font_light</item>
+
     </style>
 
     <style name="style_textview">
         <item name="android:letterSpacing">.02</item>
+        <item name="typeface">@string/font_light</item>
     </style>
 
     <style name="style_radio_button">
@@ -47,6 +50,7 @@
         <item name="android:shadowColor">#4D38BCED</item>
         <item name="android:letterSpacing">.02</item>
         <item name="android:elevation">3dp</item>
+        <item name="typeface">@string/font_light</item>
         <item name="android:textAllCaps">false</item>
 
     </style>
