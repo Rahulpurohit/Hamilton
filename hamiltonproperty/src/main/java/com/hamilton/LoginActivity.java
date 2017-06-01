@@ -26,6 +26,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String TAG = "LOGIN";
     Dialog mDialog;
     @BindView(R.id.txt_signup_username)
     EditText txt_signup_username;
@@ -123,5 +124,8 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "onBackPressed() called");
+    }
 }

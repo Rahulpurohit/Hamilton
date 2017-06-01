@@ -49,6 +49,7 @@
     <string name="str_property_type">Property Type</string>
 
     <string name="font_light">fonts/Roboto_Light.ttf</string>
+    <string name="font_bold">fonts/Roboto-Bold.ttf</string>
     <string name="str_bedrooms">Bedrooms</string>
     <string name="str_bathrooms">Bathrooms</string>
     <string name="str_car_parks">Car Parks</string>

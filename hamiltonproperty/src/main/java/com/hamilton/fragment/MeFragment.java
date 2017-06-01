@@ -27,6 +27,8 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
     //This is our viewPager
     private ViewPager viewPager;
 
+    boolean isVisibleToUser = false;
+
     public MeFragment() {
     }
 
@@ -42,8 +44,10 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
         //Initializing the tablayout
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
 
-        if (MyApplication.getApplication().getUser() == null) {
-            startActivity(new Intent(getActivity(), LoginActivity.class));
+        if (isVisibleToUser) {
+            if (MyApplication.getApplication().getUser() == null && getActivity() != null) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
         }
         //Adding the tabs using addTab() method
 
@@ -113,6 +117,13 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
 
     }
 }
