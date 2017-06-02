@@ -19,4 +19,13 @@ public interface ApiInterface {
     @POST("web/loginPropertyList.php")
     Call<PropertiesList> getPropertieseList(@Field("key") String key);
 
+    @FormUrlEncoded
+    @POST("web/loginLike.php")
+    Call<LikeUnlikeProperty> likeProperty(@Field("key") String key, @Field("userId") String userId, @Field("propertyId") String propertyId);
+
+    @FormUrlEncoded
+    @POST("web/loginUnlike.php")
+    Call<LikeUnlikeProperty> unlikeProperty(@Field("key") String key, @Field("userId") String userId, @Field("propertyId") String propertyId);
+
+
 }
