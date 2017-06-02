@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -20,14 +21,32 @@
             android:textColor="@color/black" />
     </RelativeLayout>
 
-    <com.hamilton.view.TypefacedTextView
-        style="@style/style_textview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Coming Soon"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30dp" />
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <com.hamilton.view.TypefacedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/txt_total"
+            android:textColor="@color/grey"
+            tools:text="20 of 1400 properties" />
+
+        <com.hamilton.view.TypefacedTextView
+            android:id="@+id/txt_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/grey"
+            tools:text="Sort" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_property"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

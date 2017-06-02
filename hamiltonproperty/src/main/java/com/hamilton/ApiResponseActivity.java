@@ -29,6 +29,7 @@ public class ApiResponseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_api_response);
         //getApiDataPropertyLike("1", "493");
         getApiDataShortlistedProperties("1");
+        getApiDataProperties();
     }
 
     private void getApiDataLogin(String username, String password) {
