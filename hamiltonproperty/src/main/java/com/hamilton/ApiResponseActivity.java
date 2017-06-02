@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.hamilton.application.MyApplication;
+import com.hamilton.modal.PropertiesList;
 import com.hamilton.modal.SearchFilter;
 import com.hamilton.modal.User;
 import com.hamilton.modal.error.BaseError;
@@ -64,7 +65,7 @@ public class ApiResponseActivity extends AppCompatActivity {
         });
     }
 
-    private void getApiData() {
+    private void getApiDataSearchFilter() {
         mDialog = Utils.getLoadingDialog(this);
 
         if (!mDialog.isShowing())
@@ -99,6 +100,43 @@ public class ApiResponseActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void getApiData() {
+        mDialog = Utils.getLoadingDialog(this);
+
+        if (!mDialog.isShowing())
+            mDialog.show();
+
+        Log.e("getApiData :- ", "" + "getApiData");
+        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertieseList(Constants.key);
+        userCall.enqueue(new Callback<PropertiesList>() {
+            @Override
+            public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
+                Log.e("res body :- ", "" + response.body());
+                if (mDialog.isShowing())
+                    mDialog.dismiss();
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), response.body() + "", Toast.LENGTH_SHORT).show();
+                } else {
+                    final String errorResponse = Utils.convertStreamToString(response.errorBody().byteStream());
+                    BaseError.ErrorType errorType = BaseError.ErrorType.fromErrorCode(response.code());
+                    BaseError baseError = new BaseError(errorResponse, errorType);
+                    Toast.makeText(getApplicationContext(), "" + baseError.getErrorModel().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PropertiesList> call, Throwable t) {
+
+                if (mDialog.isShowing())
+                    mDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                Log.e("User data", "Error");
+            }
+        });
+    }
+
 
 
 }
