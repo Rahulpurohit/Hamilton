@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <com.hamilton.view.TypefacedTextView
             android:layout_width="match_parent"
@@ -58,7 +58,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:visibility="gone">
 
         <com.hamilton.view.TypefacedTextView
             style="@style/style_textview"

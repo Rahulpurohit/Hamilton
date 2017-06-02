@@ -13,15 +13,12 @@ import android.view.ViewGroup;
 import com.hamilton.R;
 
 
-//Our class extending fragment
 public class Tab5 extends Fragment {
 
-    //Overriden method onCreateView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-        return inflater.inflate(R.layout.tab5, container, false);
+        View view = inflater.inflate(R.layout.tab5, container, false);
+        return view;
     }
 }

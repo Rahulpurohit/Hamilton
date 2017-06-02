@@ -1,5 +1,6 @@
 package com.hamilton.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -12,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hamilton.LoginActivity;
 import com.hamilton.R;
 import com.hamilton.adapter.Pager;
+import com.hamilton.application.MyApplication;
 
 
 public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListener {
@@ -23,6 +26,8 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
     //This is our viewPager
     private ViewPager viewPager;
+
+    boolean isVisibleToUser = false;
 
     public MeFragment() {
     }
@@ -39,14 +44,20 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
         //Initializing the tablayout
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
 
+        if (isVisibleToUser) {
+            if (MyApplication.getApplication().getUser() == null && getActivity() != null) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        }
         //Adding the tabs using addTab() method
 
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_account_setting)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_building_info)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_land_info)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_building_updates)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_customer_care)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_feedback)));
-        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_account_setting)));
+
 
         tabLayout.setTabGravity(TabLayout.MODE_SCROLLABLE);
         tabLayout.setSmoothScrollingEnabled(true);
@@ -106,6 +117,13 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
 
     }
 }

@@ -4,7 +4,6 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface ApiInterface {
     @FormUrlEncoded
@@ -16,9 +15,21 @@ public interface ApiInterface {
     @POST("web/loginallfilters.php")
     Call<SearchFilter> getSearchFilter(@Field("key") String key);
 
+    @FormUrlEncoded
+    @POST("web/loginPropertyList.php")
+    Call<PropertiesList> getPropertiesList(@Field("key") String key);
 
-    @POST("web/login.php")
-    Call<String> submitAssignment(@Query("key") String key, @Query("username") String username, @Query("password") String password);
+    @FormUrlEncoded
+    @POST("web/loginLikeList.php")
+    Call<ShortListedProperties> getShortlistedPropertiesList(@Field("key") String key, @Field("userId") String userId);
+
+    @FormUrlEncoded
+    @POST("web/loginLike.php")
+    Call<LikeUnlikeProperty> likeProperty(@Field("key") String key, @Field("userId") String userId, @Field("propertyId") String propertyId);
+
+    @FormUrlEncoded
+    @POST("web/loginUnlike.php")
+    Call<LikeUnlikeProperty> unlikeProperty(@Field("key") String key, @Field("userId") String userId, @Field("propertyId") String propertyId);
 
 
 }

@@ -52,11 +52,6 @@ public class Tab6 extends Fragment {
         ButterKnife.bind(this, rootView);
         if (MyApplication.getApplication().getUser() != null) {
             lblAccountEmail.setText(MyApplication.getApplication().getUser().getResult().getData().getUserEmail());
-            llAccountSettings.setVisibility(View.VISIBLE);
-            llAccountSettingsLogin.setVisibility(View.GONE);
-        } else {
-            llAccountSettings.setVisibility(View.GONE);
-            llAccountSettingsLogin.setVisibility(View.VISIBLE);
         }
 
 

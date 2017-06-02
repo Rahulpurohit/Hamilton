@@ -50,7 +50,8 @@
         <item name="android:shadowColor">#4D38BCED</item>
         <item name="android:letterSpacing">.02</item>
         <item name="android:elevation">3dp</item>
-        <item name="typeface">@string/font_light</item>
+        <item name="android:clickable">true</item>
+        <item name="typeface">@string/font_bold</item>
         <item name="android:textAllCaps">false</item>
 
     </style>
