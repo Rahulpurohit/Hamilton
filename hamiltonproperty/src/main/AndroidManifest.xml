@@ -41,7 +41,8 @@
         <activity
             android:name=".SearchFilterActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
-
+        <activity android:name=".AgreementsActivity" />
+        <activity android:name=".WebviewActivity"></activity>
     </application>
 
 </manifest>

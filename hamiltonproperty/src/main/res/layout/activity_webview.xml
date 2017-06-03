@@ -5,19 +5,16 @@
     android:orientation="vertical">
 
     <com.hamilton.view.TypefacedTextView
+        android:id="@+id/lblHeader"
         style="@style/style_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/str_shortlist" />
+        android:text="Your URL" />
 
-    <com.hamilton.view.TypefacedTextView
-        style="@style/style_textview"
+    <WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Coming Soon"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30dp" />
+        android:layout_height="match_parent"></WebView>
 
 
 </LinearLayout>
