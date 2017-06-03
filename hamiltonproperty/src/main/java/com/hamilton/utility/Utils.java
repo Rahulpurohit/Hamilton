@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.Window;
@@ -136,6 +138,19 @@ public class Utils {
     public static void addBulletStyle(TextView tv, String text) {
         tv.append(Html.fromHtml(tv.getContext().getResources().getString(R.string.str_bullet, "<font color='#000000'>" + text + "</font>")));
         tv.append("\n");
+    }
+
+    private static ConnectivityManager mCM;
+
+    public static boolean hasInternetAccess(Context context) {
+        if (mCM == null) {
+            mCM = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        }
+        NetworkInfo netInfo = mCM.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
     }
 
 

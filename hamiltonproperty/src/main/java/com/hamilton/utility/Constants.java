@@ -7,5 +7,7 @@ package com.hamilton.utility;
 public class Constants {
     public static final String KEY_LOGIN_DATA = "KEY_LOGIN_DATA";
     public static final String KEY_USERNAME = "KEY_USERNAME";
+    public static final String KEY_TITLE = "KEY_TITLE";
+    public static final String KEY_WEB_URL = "KEY_WEB_URL";
     public static String key = "pLU7ikdVrUk6AH7ejfc6pPJCtBFecqKP4yBGWqzIenppqwVDzEMCBbHcuf3pSgPhJp";
 }
