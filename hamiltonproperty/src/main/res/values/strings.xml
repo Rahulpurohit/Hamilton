@@ -61,4 +61,7 @@
     <string name="supervisor_name">Supervisor Name:</string>
     <string name="supervisor_email">Supervisor Email:</string>
     <string name="supervisor_phone">Phone:</string>
+    <string name="err_internet">Please check internet connection</string>
+    <string name="our_offer">Our Offer</string>
+    <string name="_new">NEW</string>
 </resources>
