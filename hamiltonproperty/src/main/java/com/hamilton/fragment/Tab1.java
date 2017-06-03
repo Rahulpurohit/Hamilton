@@ -2,15 +2,17 @@ package com.hamilton.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hamilton.R;
+import com.hamilton.application.MyApplication;
+import com.hamilton.modal.User;
 import com.hamilton.utility.Utils;
 import com.hamilton.view.TypefacedTextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,27 +33,15 @@ public class Tab1 extends Fragment {
     }
 
     private void setData() {
-        List<String> arr = new ArrayList<>();
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
-
         lblTab1.setText("");
-        for (int i = 0; i < arr.size(); i++) {
-            Utils.addBulletStyle(lblTab1, arr.get(i));
+        if (MyApplication.getApplication().getUser() != null && MyApplication.getApplication().getUser().getResult().getData() != null) {
+            List<User.Result.Data.LandInformationDetail> buildingInformationDetails = MyApplication.getApplication().getUser().getResult().getData().getBuildingInformationDetails();
+
+            for (int i = 0; buildingInformationDetails != null && i < buildingInformationDetails.size(); i++) {
+                if (!TextUtils.isEmpty(buildingInformationDetails.get(i).getUrl()))
+                    Utils.addBulletStyle(lblTab1, buildingInformationDetails.get(i).getTitle(), buildingInformationDetails.get(i).getUrl());
+            }
+
         }
     }
 

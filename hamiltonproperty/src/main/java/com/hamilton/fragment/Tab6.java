@@ -50,12 +50,22 @@ public class Tab6 extends Fragment {
 
         View rootView = inflater.inflate(R.layout.tab6, container, false);
         ButterKnife.bind(this, rootView);
-        if (MyApplication.getApplication().getUser() != null) {
-            lblAccountEmail.setText(MyApplication.getApplication().getUser().getResult().getData().getUserEmail());
-        }
+        setData();
 
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setData();
+    }
+
+    private void setData() {
+        if (MyApplication.getApplication().getUser() != null) {
+            lblAccountEmail.setText(MyApplication.getApplication().getUser().getResult().getData().getUserEmail());
+        }
     }
 
     @Override
