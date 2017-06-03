@@ -34,7 +34,7 @@ public class User implements Serializable {
         this.result = result;
     }
 
-    public class Result implements Serializable {
+    public class Result {
 
         @SerializedName("status")
         @Expose
@@ -71,7 +71,7 @@ public class User implements Serializable {
         }
 
 
-        public class Data implements Serializable {
+        public class Data {
 
             @SerializedName("ValidUser")
             @Expose
@@ -91,75 +91,18 @@ public class User implements Serializable {
             @SerializedName("BuildingInformation")
             @Expose
             private String buildingInformation;
-            @SerializedName("preagreement")
+            @SerializedName("BuildingInformationDetails")
             @Expose
-            private String preagreement;
-            @SerializedName("preagreement_process")
-            @Expose
-            private String preagreementProcess;
-            @SerializedName("contract_procedure")
-            @Expose
-            private String contractProcedure;
-            @SerializedName("tender")
-            @Expose
-            private String tender;
-            @SerializedName("invoice")
-            @Expose
-            private String invoice;
-            @SerializedName("receipts")
-            @Expose
-            private String receipts;
-            @SerializedName("building_contracts")
-            @Expose
-            private String buildingContracts;
-            @SerializedName("sketch_plans_array")
-            @Expose
-            private List<String> sketchPlansArray = null;
-            @SerializedName("facade")
-            @Expose
-            private String facade;
-            @SerializedName("origin_form")
-            @Expose
-            private String originForm;
-            @SerializedName("variation_quote_request")
-            @Expose
-            private String variationQuoteRequest;
-            @SerializedName("receipts_letter_for_banks")
-            @Expose
-            private String receiptsLetterForBanks;
+            private List<LandInformationDetail> buildingInformationDetails = null;
             @SerializedName("land_information")
             @Expose
             private String landInformation;
-            @SerializedName("plan_a_sub")
+            @SerializedName("landInformationDetails")
             @Expose
-            private String planASub;
-            @SerializedName("civil_engineering")
+            private List<LandInformationDetail> landInformationDetails = null;
+            @SerializedName("buildingUpdates")
             @Expose
-            private String civilEngineering;
-            @SerializedName("compaction_report")
-            @Expose
-            private String compactionReport;
-            @SerializedName("mcp")
-            @Expose
-            private String mcp;
-            @SerializedName("building_envelope_and_design_guidelines")
-            @Expose
-            private String buildingEnvelopeAndDesignGuidelines;
-            @SerializedName("building_updates")
-            @Expose
-            private String buildingUpdates;
-            @SerializedName("building_plan")
-            @Expose
-            private String buildingPlan;
-            @SerializedName("permit_updates")
-            @Expose
-            private String permitUpdates;
-            @SerializedName("permit_with_stamped_plans")
-            @Expose
-            private String permitWithStampedPlans;
-            @SerializedName("stage_progress_update")
-            @Expose
-            private String stageProgressUpdate;
+            private List<LandInformationDetail> buildingUpdates = null;
             @SerializedName("supervisor_number")
             @Expose
             private String supervisorNumber;
@@ -242,100 +185,12 @@ public class User implements Serializable {
                 this.buildingInformation = buildingInformation;
             }
 
-            public String getPreagreement() {
-                return preagreement;
+            public List<LandInformationDetail> getBuildingInformationDetails() {
+                return buildingInformationDetails;
             }
 
-            public void setPreagreement(String preagreement) {
-                this.preagreement = preagreement;
-            }
-
-            public String getPreagreementProcess() {
-                return preagreementProcess;
-            }
-
-            public void setPreagreementProcess(String preagreementProcess) {
-                this.preagreementProcess = preagreementProcess;
-            }
-
-            public String getContractProcedure() {
-                return contractProcedure;
-            }
-
-            public void setContractProcedure(String contractProcedure) {
-                this.contractProcedure = contractProcedure;
-            }
-
-            public String getTender() {
-                return tender;
-            }
-
-            public void setTender(String tender) {
-                this.tender = tender;
-            }
-
-            public String getInvoice() {
-                return invoice;
-            }
-
-            public void setInvoice(String invoice) {
-                this.invoice = invoice;
-            }
-
-            public String getReceipts() {
-                return receipts;
-            }
-
-            public void setReceipts(String receipts) {
-                this.receipts = receipts;
-            }
-
-            public String getBuildingContracts() {
-                return buildingContracts;
-            }
-
-            public void setBuildingContracts(String buildingContracts) {
-                this.buildingContracts = buildingContracts;
-            }
-
-            public List<String> getSketchPlansArray() {
-                return sketchPlansArray;
-            }
-
-            public void setSketchPlansArray(List<String> sketchPlansArray) {
-                this.sketchPlansArray = sketchPlansArray;
-            }
-
-            public String getFacade() {
-                return facade;
-            }
-
-            public void setFacade(String facade) {
-                this.facade = facade;
-            }
-
-            public String getOriginForm() {
-                return originForm;
-            }
-
-            public void setOriginForm(String originForm) {
-                this.originForm = originForm;
-            }
-
-            public String getVariationQuoteRequest() {
-                return variationQuoteRequest;
-            }
-
-            public void setVariationQuoteRequest(String variationQuoteRequest) {
-                this.variationQuoteRequest = variationQuoteRequest;
-            }
-
-            public String getReceiptsLetterForBanks() {
-                return receiptsLetterForBanks;
-            }
-
-            public void setReceiptsLetterForBanks(String receiptsLetterForBanks) {
-                this.receiptsLetterForBanks = receiptsLetterForBanks;
+            public void setBuildingInformationDetails(List<LandInformationDetail> buildingInformationDetails) {
+                this.buildingInformationDetails = buildingInformationDetails;
             }
 
             public String getLandInformation() {
@@ -346,84 +201,20 @@ public class User implements Serializable {
                 this.landInformation = landInformation;
             }
 
-            public String getPlanASub() {
-                return planASub;
+            public List<LandInformationDetail> getLandInformationDetails() {
+                return landInformationDetails;
             }
 
-            public void setPlanASub(String planASub) {
-                this.planASub = planASub;
+            public void setLandInformationDetails(List<LandInformationDetail> landInformationDetails) {
+                this.landInformationDetails = landInformationDetails;
             }
 
-            public String getCivilEngineering() {
-                return civilEngineering;
-            }
-
-            public void setCivilEngineering(String civilEngineering) {
-                this.civilEngineering = civilEngineering;
-            }
-
-            public String getCompactionReport() {
-                return compactionReport;
-            }
-
-            public void setCompactionReport(String compactionReport) {
-                this.compactionReport = compactionReport;
-            }
-
-            public String getMcp() {
-                return mcp;
-            }
-
-            public void setMcp(String mcp) {
-                this.mcp = mcp;
-            }
-
-            public String getBuildingEnvelopeAndDesignGuidelines() {
-                return buildingEnvelopeAndDesignGuidelines;
-            }
-
-            public void setBuildingEnvelopeAndDesignGuidelines(String buildingEnvelopeAndDesignGuidelines) {
-                this.buildingEnvelopeAndDesignGuidelines = buildingEnvelopeAndDesignGuidelines;
-            }
-
-            public String getBuildingUpdates() {
+            public List<LandInformationDetail> getBuildingUpdates() {
                 return buildingUpdates;
             }
 
-            public void setBuildingUpdates(String buildingUpdates) {
+            public void setBuildingUpdates(List<LandInformationDetail> buildingUpdates) {
                 this.buildingUpdates = buildingUpdates;
-            }
-
-            public String getBuildingPlan() {
-                return buildingPlan;
-            }
-
-            public void setBuildingPlan(String buildingPlan) {
-                this.buildingPlan = buildingPlan;
-            }
-
-            public String getPermitUpdates() {
-                return permitUpdates;
-            }
-
-            public void setPermitUpdates(String permitUpdates) {
-                this.permitUpdates = permitUpdates;
-            }
-
-            public String getPermitWithStampedPlans() {
-                return permitWithStampedPlans;
-            }
-
-            public void setPermitWithStampedPlans(String permitWithStampedPlans) {
-                this.permitWithStampedPlans = permitWithStampedPlans;
-            }
-
-            public String getStageProgressUpdate() {
-                return stageProgressUpdate;
-            }
-
-            public void setStageProgressUpdate(String stageProgressUpdate) {
-                this.stageProgressUpdate = stageProgressUpdate;
             }
 
             public String getSupervisorNumber() {
@@ -512,6 +303,33 @@ public class User implements Serializable {
 
             public void setSupervisorPhone(String supervisorPhone) {
                 this.supervisorPhone = supervisorPhone;
+            }
+
+            public class LandInformationDetail {
+
+                @SerializedName("title")
+                @Expose
+                private String title;
+                @SerializedName("url")
+                @Expose
+                private String url;
+
+                public String getTitle() {
+                    return title;
+                }
+
+                public void setTitle(String title) {
+                    this.title = title;
+                }
+
+                public String getUrl() {
+                    return url;
+                }
+
+                public void setUrl(String url) {
+                    this.url = url;
+                }
+
             }
 
         }

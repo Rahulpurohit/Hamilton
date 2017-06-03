@@ -6,16 +6,16 @@ package com.hamilton.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hamilton.R;
+import com.hamilton.application.MyApplication;
+import com.hamilton.modal.User;
 import com.hamilton.utility.Utils;
 import com.hamilton.view.TypefacedTextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,18 +47,30 @@ public class Tab4 extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setData();
+    }
+
     private void setData() {
-        List<String> arr = new ArrayList<>();
-        arr.add("Pre Agreement");
-        arr.add("Pre Agreement");
 
         lblTab1.setText("");
-        for (int i = 0; i < arr.size(); i++) {
-            Utils.addBulletStyle(lblTab1, arr.get(i));
+
+        User user = MyApplication.getApplication().getUser();
+        if (user != null && user.getResult().getData() != null) {
+
+            if (!TextUtils.isEmpty(user.getResult().getData().getContractUpdates()))
+                Utils.addBulletStyle(lblTab1, getString(R.string.str_contract_updates), user.getResult().getData().getContractUpdates());
+
+            if (!TextUtils.isEmpty(user.getResult().getData().getPermitUpdatesCare()))
+                Utils.addBulletStyle(lblTab1, getString(R.string.str_permit_update_care), user.getResult().getData().getPermitUpdatesCare());
+
+            lblSupervisorName.setText(user.getResult().getData().getSupervisorName());
+            lblSupervisorEmail.setText(user.getResult().getData().getSupervisorEmail());
+            lblSupervisorPhone.setText(user.getResult().getData().getSupervisorPhone());
         }
 
-        lblSupervisorName.setText("Akshay Sharma");
-        lblSupervisorEmail.setText("sharma.akshay5@gmail.com");
-        lblSupervisorPhone.setText("+91-9660902992");
+
     }
 }

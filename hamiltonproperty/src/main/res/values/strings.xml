@@ -65,4 +65,6 @@
     <string name="our_offer">Our Offer</string>
     <string name="_new">NEW</string>
     <string name="no_network_access">No Internet Access</string>
+    <string name="str_contract_updates">Contract Updates</string>
+    <string name="str_permit_update_care">Permit Updates Care</string>
 </resources>

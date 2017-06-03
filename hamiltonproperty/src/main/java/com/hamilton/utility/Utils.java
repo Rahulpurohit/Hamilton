@@ -8,7 +8,12 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
+import android.text.style.UnderlineSpan;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -134,10 +139,28 @@ public class Utils {
         return sb.toString();
     }
 
-
-    public static void addBulletStyle(TextView tv, String text) {
-        tv.append(Html.fromHtml(tv.getContext().getResources().getString(R.string.str_bullet, "<font color='#000000'>" + text + "</font>")));
+    /**
+     * @param tv
+     * @param title
+     * @param url   Make Bullet with web link without underline.
+     */
+    public static void addBulletStyle(TextView tv, String title, String url) {
+        String content = (tv.getContext().getResources().getString(R.string.str_bullet, "<font color='#000000'>" + "<a href=" + url + ">" + title + "</a></font>"));
+        Spannable s = (Spannable) Html.fromHtml(content);
+        for (URLSpan u : s.getSpans(0, s.length(), URLSpan.class)) {
+            s.setSpan(new UnderlineSpan() {
+                public void updateDrawState(TextPaint tp) {
+                    tp.setUnderlineText(false);
+                }
+            }, s.getSpanStart(u), s.getSpanEnd(u), 0);
+        }
+        tv.setLineSpacing(0f, 1.3f);
+        tv.append(s);
         tv.append("\n");
+        tv.setLinkTextColor(tv.getResources().getColor(R.color.black));
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
+
+
     }
 
     private static ConnectivityManager mCM;
