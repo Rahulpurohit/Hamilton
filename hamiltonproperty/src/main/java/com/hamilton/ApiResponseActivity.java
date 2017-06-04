@@ -7,7 +7,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.hamilton.application.MyApplication;
-import com.hamilton.modal.LikeUnlikeProperty;
 import com.hamilton.modal.PropertiesList;
 import com.hamilton.modal.SearchFilter;
 import com.hamilton.modal.ShortListedProperties;
@@ -112,7 +111,7 @@ public class ApiResponseActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertiesList(Constants.key);
+        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertiesList(Constants.key, MyApplication.getUserId());
         userCall.enqueue(new Callback<PropertiesList>() {
             @Override
             public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
@@ -185,7 +184,7 @@ public class ApiResponseActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<LikeUnlikeProperty> userCall = MyApplication.getApplication().getClient().likeProperty(Constants.key, userId, propertyId);
+       /* Call<LikeUnlikeProperty> userCall = MyApplication.getApplication().getClient().likeProperty(Constants.key, userId, propertyId);
         userCall.enqueue(new Callback<LikeUnlikeProperty>() {
             @Override
             public void onResponse(Call<LikeUnlikeProperty> call, Response<LikeUnlikeProperty> response) {
@@ -211,7 +210,7 @@ public class ApiResponseActivity extends AppCompatActivity {
 
                 Log.e("User data", "Error");
             }
-        });
+        });*/
     }
 
     private void getApiDataPropertyUnlike(String userId, String propertyId) {
@@ -221,7 +220,7 @@ public class ApiResponseActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<LikeUnlikeProperty> userCall = MyApplication.getApplication().getClient().unlikeProperty(Constants.key, userId, propertyId);
+        /*Call<LikeUnlikeProperty> userCall = MyApplication.getApplication().getClient().unlikeProperty(Constants.key, userId, propertyId);
         userCall.enqueue(new Callback<LikeUnlikeProperty>() {
             @Override
             public void onResponse(Call<LikeUnlikeProperty> call, Response<LikeUnlikeProperty> response) {
@@ -247,7 +246,7 @@ public class ApiResponseActivity extends AppCompatActivity {
 
                 Log.e("User data", "Error");
             }
-        });
+        });*/
     }
 
 

@@ -104,4 +104,12 @@ public class MyApplication extends MultiDexApplication {
         }
         this.loginData = currentUser;
     }
+
+    public static int getUserId() {
+        try {
+            return MyApplication.getApplication().getUser().getResult().getData().getUserId();
+        } catch (NullPointerException e) {
+            return -1;
+        }
+    }
 }
