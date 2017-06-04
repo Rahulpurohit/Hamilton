@@ -34,7 +34,7 @@ public class User implements Serializable {
         this.result = result;
     }
 
-    public class Result {
+    public class Result implements Serializable {
 
         @SerializedName("status")
         @Expose
@@ -71,7 +71,7 @@ public class User implements Serializable {
         }
 
 
-        public class Data {
+        public class Data implements Serializable {
 
             @SerializedName("ValidUser")
             @Expose
@@ -136,6 +136,11 @@ public class User implements Serializable {
             @SerializedName("supervisor_phone")
             @Expose
             private String supervisorPhone;
+
+            @SerializedName("feedback")
+            @Expose
+            private String feedback;
+
 
             public String getValidUser() {
                 return validUser;
@@ -303,6 +308,14 @@ public class User implements Serializable {
 
             public void setSupervisorPhone(String supervisorPhone) {
                 this.supervisorPhone = supervisorPhone;
+            }
+
+            public String getFeedback() {
+                return feedback;
+            }
+
+            public void setFeedback(String feedback) {
+                this.feedback = feedback;
             }
 
             public class LandInformationDetail {
