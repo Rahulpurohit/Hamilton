@@ -11,115 +11,99 @@ import java.util.List;
  */
 
 public class SearchFilter implements Serializable {
-
-    @SerializedName("result")
+    @SerializedName("status")
     @Expose
-    private Result result;
+    private String status;
+    @SerializedName("data")
+    @Expose
+    private Data data;
+    @SerializedName("msg")
+    @Expose
+    private String msg;
 
-    public Result getResult() {
-        return result;
+    public String getStatus() {
+        return status;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public class Result implements Serializable {
+    public Data getData() {
+        return data;
+    }
 
-        @SerializedName("status")
+    public void setData(Data data) {
+        this.data = data;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public class Data implements Serializable {
+
+        @SerializedName("badrooms")
         @Expose
-        private String status;
-        @SerializedName("data")
+        private List<String> badrooms = null;
+        @SerializedName("bathrooms")
         @Expose
-        private Data data;
-        @SerializedName("msg")
+        private List<String> bathrooms = null;
+        @SerializedName("cars")
         @Expose
-        private String msg;
+        private List<String> cars = null;
+        @SerializedName("landsize")
+        @Expose
+        private List<String> landsize = null;
+        @SerializedName("toilet")
+        @Expose
+        private List<String> toilet = null;
 
-        public String getStatus() {
-            return status;
+        public List<String> getBadrooms() {
+            return badrooms;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setBadrooms(List<String> badrooms) {
+            this.badrooms = badrooms;
         }
 
-        public Data getData() {
-            return data;
+        public List<String> getBathrooms() {
+            return bathrooms;
         }
 
-        public void setData(Data data) {
-            this.data = data;
+        public void setBathrooms(List<String> bathrooms) {
+            this.bathrooms = bathrooms;
         }
 
-        public String getMsg() {
-            return msg;
+        public List<String> getCars() {
+            return cars;
         }
 
-        public void setMsg(String msg) {
-            this.msg = msg;
+        public void setCars(List<String> cars) {
+            this.cars = cars;
         }
 
-        public class Data implements Serializable {
+        public List<String> getLandsize() {
+            return landsize;
+        }
 
-            @SerializedName("badrooms")
-            @Expose
-            private List<String> badrooms = null;
-            @SerializedName("bathrooms")
-            @Expose
-            private List<String> bathrooms = null;
-            @SerializedName("cars")
-            @Expose
-            private List<String> cars = null;
-            @SerializedName("landsize")
-            @Expose
-            private List<String> landsize = null;
-            @SerializedName("toilet")
-            @Expose
-            private List<String> toilet = null;
+        public void setLandsize(List<String> landsize) {
+            this.landsize = landsize;
+        }
 
-            public List<String> getBadrooms() {
-                return badrooms;
-            }
+        public List<String> getToilet() {
+            return toilet;
+        }
 
-            public void setBadrooms(List<String> badrooms) {
-                this.badrooms = badrooms;
-            }
-
-            public List<String> getBathrooms() {
-                return bathrooms;
-            }
-
-            public void setBathrooms(List<String> bathrooms) {
-                this.bathrooms = bathrooms;
-            }
-
-            public List<String> getCars() {
-                return cars;
-            }
-
-            public void setCars(List<String> cars) {
-                this.cars = cars;
-            }
-
-            public List<String> getLandsize() {
-                return landsize;
-            }
-
-            public void setLandsize(List<String> landsize) {
-                this.landsize = landsize;
-            }
-
-            public List<String> getToilet() {
-                return toilet;
-            }
-
-            public void setToilet(List<String> toilet) {
-                this.toilet = toilet;
-            }
-
+        public void setToilet(List<String> toilet) {
+            this.toilet = toilet;
         }
 
     }
+
 
 }

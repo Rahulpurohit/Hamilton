@@ -50,8 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:text="You have to login to use this feature"
-            android:textColor="@color/dark_grey"
+            android:text="@string/str_have_to_login"
+            android:textColor="@color/black"
             android:visibility="gone" />
 
     </FrameLayout>

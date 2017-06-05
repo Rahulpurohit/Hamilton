@@ -7,7 +7,6 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.hamilton.view.TypefacedEditText;
 import com.hamilton.view.TypefacedTextView;
@@ -18,10 +17,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AppointmentActivity extends AppCompatActivity {
-    @BindView(R.id.relativeLayout2)
-    RelativeLayout relativeLayout2;
-    @BindView(R.id.btn_back)
-    TypefacedTextView btnBack;
     @BindView(R.id.linearLayout5)
     LinearLayout linearLayout5;
     @BindView(R.id.typefacedTextView)
@@ -44,19 +39,16 @@ public class AppointmentActivity extends AppCompatActivity {
     AppCompatImageView imgClickCalander;
     @BindView(R.id.edit_time)
     TypefacedEditText editTime;
+    private Calendar cal;
+    private int day;
+    private int month;
+    private int year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment);
         ButterKnife.bind(this);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         imgClickCalander.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,11 +66,6 @@ public class AppointmentActivity extends AppCompatActivity {
 
 
     }
-
-    private Calendar cal;
-    private int day;
-    private int month;
-    private int year;
 
     public void dateDialog() {
 

@@ -89,14 +89,10 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0:
-
-                {
+                case 0: {
                     return new SearchFragment();
                 }//CALENDAR
                 case 1: {
-
-//Assignment
                     return new PropertiesFragment();
                 }
                 case 2: {

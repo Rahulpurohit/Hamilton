@@ -131,8 +131,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.d(TAG, "onBackPressed() called");
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+
         if (MyApplication.getUserId() != -1)
-            callHomeScreen();
+            intent.putExtra(Constants.KEY_PAGER_LOC, 3);
+
+
+        startActivity(intent);
+        finish();
 
 
     }

@@ -1,11 +1,13 @@
 package com.hamilton.fragment;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hamilton.LoginActivity;
 import com.hamilton.R;
 import com.hamilton.adapter.PropertyAdapter;
 import com.hamilton.application.MyApplication;
@@ -26,6 +29,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,6 +52,12 @@ public class ShortlistFragment extends Fragment {
     public ShortlistFragment() {
     }
 
+    @OnClick(R.id.txt_login)
+    public void gotoLogin() {
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,6 +75,7 @@ public class ShortlistFragment extends Fragment {
         recyclerProperty.setItemAnimator(new DefaultItemAnimator());
         recyclerProperty.setAdapter(mAdapter);
         txtHeader.setText(R.string.str_shortlist);
+        txtLogin.setText(Html.fromHtml(getString(R.string.str_have_to_login)));
         txtLogin.setVisibility(MyApplication.getUserId() == -1 ? View.VISIBLE : View.GONE);
         recyclerProperty.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         txtTotal.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);

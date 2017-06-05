@@ -36,11 +36,12 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
         View rootView = inflater.inflate(R.layout.fragment_me, container, false);
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        toolbar.setVisibility(View.GONE);
-        //Initializing the tablayout
-        tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         if (isVisibleToUser) {
             if (MyApplication.getUserId() == -1 && getActivity() != null) {
@@ -48,6 +49,20 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
                 getActivity().finish();
             }
         }
+    }
+
+    @Override
+    public void onViewCreated(View rootView, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setVisibility(View.GONE);
+        //Initializing the tablayout
+
+        tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
+
+
         //Adding the tabs using addTab() method
 
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_account_setting)));
@@ -94,13 +109,6 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
-
-        return rootView;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
     }
 
