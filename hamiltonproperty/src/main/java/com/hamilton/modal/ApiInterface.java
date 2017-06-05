@@ -17,19 +17,19 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("web/loginPropertyList.php")
-    Call<PropertiesList> getPropertiesList(@Field("key") String key);
+    Call<PropertiesList> getPropertiesList(@Field("key") String key, @Field("userId") int userId);
 
     @FormUrlEncoded
     @POST("web/loginLikeList.php")
-    Call<ShortListedProperties> getShortlistedPropertiesList(@Field("key") String key, @Field("userId") String userId);
+    Call<ShortListedProperties> getShortlistedPropertiesList(@Field("key") String key, @Field("userId") int userId);
 
     @FormUrlEncoded
     @POST("web/loginLike.php")
-    Call<LikeUnlikeProperty> likeProperty(@Field("key") String key, @Field("userId") String userId, @Field("propertyId") String propertyId);
+    Call<LikeUnlikeProperty> likeProperty(@Field("key") String key, @Field("userId") int userId, @Field("propertyId") int propertyId);
 
     @FormUrlEncoded
     @POST("web/loginUnlike.php")
-    Call<LikeUnlikeProperty> unlikeProperty(@Field("key") String key, @Field("userId") String userId, @Field("propertyId") String propertyId);
+    Call<LikeUnlikeProperty> unlikeProperty(@Field("key") String key, @Field("userId") int userId, @Field("propertyId") int propertyId);
 
 
 }
