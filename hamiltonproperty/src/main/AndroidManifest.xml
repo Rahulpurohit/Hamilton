@@ -42,7 +42,9 @@
             android:name=".SearchFilterActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
         <activity android:name=".AgreementsActivity" />
-        <activity android:name=".WebviewActivity"></activity>
+        <activity android:name=".WebviewActivity" />
+        <activity android:name=".PropertyDetailActivity" />
+        <activity android:name=".AppointmentActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -48,7 +48,7 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">15dip</item>
         <item name="android:shadowColor">#4D38BCED</item>
-        <item name="android:letterSpacing">.02</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">.02</item>
         <item name="android:elevation">3dp</item>
         <item name="android:clickable">true</item>
         <item name="typeface">@string/font_bold</item>

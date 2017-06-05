@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hamilton.R;
@@ -66,10 +67,10 @@ public class PropertiesFragment extends Fragment {
     private void getApiDataProperties() {
         mDialog = Utils.getLoadingDialog(getActivity());
 
-            mDialog.show();
+        mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertiesList(Constants.key);
+        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertiesList(Constants.key, MyApplication.getUserId());
         userCall.enqueue(new Callback<PropertiesList>() {
             @Override
             public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
@@ -98,6 +99,7 @@ public class PropertiesFragment extends Fragment {
                 Log.e("User data", "Error");
             }
         });
+
     }
 
     @Override

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        style="@style/style_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|start"
+        android:text="@string/str_properties">
+
+        <com.hamilton.view.TypefacedTextView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:drawableLeft="@drawable/ic_back"
+            android:gravity="center"
+            android:text="@string/str_back" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout2"
+        android:orientation="vertical">
+
+        <com.hamilton.view.TypefacedTextView
+            android:id="@+id/typefacedTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="3dp"
+            android:text="Request Your Appointment"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="0.57"
+            android:orientation="vertical">
+
+            <com.hamilton.view.TypefacedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.hamilton.view.TypefacedEditText
+                    android:id="@+id/edit_fname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_box_white"
+
+                    android:hint="First"
+                    android:minEms="5"
+                    android:padding="3dp" />
+
+                <com.hamilton.view.TypefacedEditText
+                    android:id="@+id/edit_lname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/edit_box_white"
+                    android:hint="Last"
+                    android:minEms="5"
+                    android:padding="3dp" />
+            </LinearLayout>
+
+            <com.hamilton.view.TypefacedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Email"
+
+                android:textSize="18sp" />
+
+            <com.hamilton.view.TypefacedEditText
+                android:id="@+id/edit_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_box_white"
+                android:inputType="textEmailAddress"
+                android:minEms="8"
+                android:padding="3dp" />
+
+            <com.hamilton.view.TypefacedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Phone Number"
+
+                android:textSize="18sp" />
+
+            <com.hamilton.view.TypefacedEditText
+                android:id="@+id/edit_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_box_white"
+                android:inputType="phone"
+                android:minEms="6"
+                android:padding="3dp" />
+
+            <com.hamilton.view.TypefacedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preferred Date"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.hamilton.view.TypefacedEditText
+                    android:id="@+id/edit_dd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_box_white"
+                    android:maxLength="2"
+                    android:minEms="2"
+                    android:padding="3dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="-" />
+
+                <com.hamilton.view.TypefacedEditText
+                    android:id="@+id/edit_mm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/edit_box_white"
+                    android:maxLength="2"
+
+                    android:minEms="2"
+                    android:padding="3dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="-" />
+
+                <com.hamilton.view.TypefacedEditText
+                    android:id="@+id/edit_yyyy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/edit_box_white"
+                    android:maxLength="4"
+
+                    android:minEms="4"
+                    android:padding="3dp" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_click_calander"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/appoint_calendar" />
+            </LinearLayout>
+
+            <com.hamilton.view.TypefacedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Preferred Time"
+
+                android:textSize="18sp" />
+
+            <com.hamilton.view.TypefacedEditText
+                android:id="@+id/edit_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_box_white"
+                android:inputType="phone"
+                android:minEms="8"
+                android:padding="3dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.hamilton.view.TypefacedButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom"
+        android:background="@drawable/property_detail_bottom"
+        android:text="SUBMIT"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+</RelativeLayout>
