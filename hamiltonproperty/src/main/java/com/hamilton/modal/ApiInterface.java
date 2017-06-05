@@ -21,7 +21,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("web/loginLikeList.php")
-    Call<PropertiesList> getShortlistedPropertiesList(@Field("key") String key, @Field("userId") int userId);
+    Call<ShortListedProperties> getShortlistedPropertiesList(@Field("key") String key, @Field("userId") int userId);
 
     @FormUrlEncoded
     @POST("web/loginLike.php")

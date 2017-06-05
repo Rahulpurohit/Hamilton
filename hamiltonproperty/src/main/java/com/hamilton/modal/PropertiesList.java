@@ -95,7 +95,7 @@ public class PropertiesList implements Parcelable {
         private String size;
         @SerializedName("islike")
         @Expose
-        private Boolean islike;
+        private boolean islike;
 
         public Integer getPropertyId() {
             return propertyId;
@@ -217,11 +217,11 @@ public class PropertiesList implements Parcelable {
             this.size = size;
         }
 
-        public Boolean getIslike() {
+        public boolean getIslike() {
             return islike;
         }
 
-        public void setIslike(Boolean islike) {
+        public void setIslike(boolean islike) {
             this.islike = islike;
         }
 

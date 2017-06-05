@@ -17,6 +17,7 @@ import com.hamilton.R;
 import com.hamilton.adapter.PropertyAdapter;
 import com.hamilton.application.MyApplication;
 import com.hamilton.modal.PropertiesList;
+import com.hamilton.modal.ShortListedProperties;
 import com.hamilton.modal.error.BaseError;
 import com.hamilton.utility.Constants;
 import com.hamilton.utility.Utils;
@@ -69,7 +70,7 @@ public class ShortlistFragment extends Fragment {
         recyclerProperty.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         txtTotal.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         txtSort.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
-
+        if (MyApplication.getUserId() != -1)
         getApiDataProperties();
     }
 
@@ -79,17 +80,24 @@ public class ShortlistFragment extends Fragment {
         mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getShortlistedPropertiesList(Constants.key, MyApplication.getUserId());
-        userCall.enqueue(new Callback<PropertiesList>() {
+        Call<ShortListedProperties> userCall = MyApplication.getApplication().getClient().getShortlistedPropertiesList(Constants.key, MyApplication.getUserId());
+        userCall.enqueue(new Callback<ShortListedProperties>() {
             @Override
-            public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
+            public void onResponse(Call<ShortListedProperties> call, Response<ShortListedProperties> response) {
                 Log.e("res body :- ", "" + response.body());
                 mDialog.dismiss();
                 if (response.isSuccessful()) {
-                    final PropertiesList body = response.body();
-                    txtTotal.setText(body.getData().size() + getString(R.string.str_properties));
-                    mAdapter.data = (ArrayList<PropertiesList.Datum>) body.getData();
-                    mAdapter.notifyDataSetChanged();
+                    final ShortListedProperties body = response.body();
+                    if (body.getResult().getData()!= null &&body.getResult().getData().size() > 0) {
+                        txtTotal.setText(body.getResult().getData().size() + getString(R.string.str_properties));
+                        mAdapter.data = (ArrayList<PropertiesList.Datum>) body.getResult().getData();
+                        mAdapter.notifyDataSetChanged();
+                    } else {
+                        txtLogin.setVisibility(MyApplication.getUserId() == -1 ? View.VISIBLE : View.GONE);
+                        recyclerProperty.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
+                        txtTotal.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
+                        txtSort.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
+                    }
                 } else {
                     final String errorResponse = Utils.convertStreamToString(response.errorBody().byteStream());
                     BaseError.ErrorType errorType = BaseError.ErrorType.fromErrorCode(response.code());
@@ -99,7 +107,7 @@ public class ShortlistFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<PropertiesList> call, Throwable t) {
+            public void onFailure(Call<ShortListedProperties> call, Throwable t) {
 
                 if (mDialog.isShowing())
                     mDialog.dismiss();
