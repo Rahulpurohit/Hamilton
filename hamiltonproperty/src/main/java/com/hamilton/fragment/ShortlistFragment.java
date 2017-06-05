@@ -1,11 +1,13 @@
 package com.hamilton.fragment;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +15,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hamilton.LoginActivity;
 import com.hamilton.R;
 import com.hamilton.adapter.PropertyAdapter;
 import com.hamilton.application.MyApplication;
 import com.hamilton.modal.PropertiesList;
-import com.hamilton.modal.ShortListedProperties;
 import com.hamilton.modal.error.BaseError;
 import com.hamilton.utility.Constants;
 import com.hamilton.utility.Utils;
@@ -27,15 +29,13 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class ShortlistFragment extends Fragment {
-    public ShortlistFragment() {
-    }
-
     @BindView(R.id.txt_header)
     TextView txtHeader;
     @BindView(R.id.txt_total)
@@ -48,6 +48,15 @@ public class ShortlistFragment extends Fragment {
     TextView txtLogin;
     PropertyAdapter mAdapter;
     private Dialog mDialog;
+
+    public ShortlistFragment() {
+    }
+
+    @OnClick(R.id.txt_login)
+    public void gotoLogin() {
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,12 +75,13 @@ public class ShortlistFragment extends Fragment {
         recyclerProperty.setItemAnimator(new DefaultItemAnimator());
         recyclerProperty.setAdapter(mAdapter);
         txtHeader.setText(R.string.str_shortlist);
+        txtLogin.setText(Html.fromHtml(getString(R.string.str_have_to_login)));
         txtLogin.setVisibility(MyApplication.getUserId() == -1 ? View.VISIBLE : View.GONE);
         recyclerProperty.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         txtTotal.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         txtSort.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         if (MyApplication.getUserId() != -1)
-        getApiDataProperties();
+            getApiDataProperties();
     }
 
     private void getApiDataProperties() {
@@ -80,17 +90,17 @@ public class ShortlistFragment extends Fragment {
         mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<ShortListedProperties> userCall = MyApplication.getApplication().getClient().getShortlistedPropertiesList(Constants.key, MyApplication.getUserId());
-        userCall.enqueue(new Callback<ShortListedProperties>() {
+        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getShortlistedPropertiesList(Constants.key, MyApplication.getUserId());
+        userCall.enqueue(new Callback<PropertiesList>() {
             @Override
-            public void onResponse(Call<ShortListedProperties> call, Response<ShortListedProperties> response) {
+            public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
                 Log.e("res body :- ", "" + response.body());
                 mDialog.dismiss();
                 if (response.isSuccessful()) {
-                    final ShortListedProperties body = response.body();
-                    if (body.getResult().getData()!= null &&body.getResult().getData().size() > 0) {
-                        txtTotal.setText(body.getResult().getData().size() + getString(R.string.str_properties));
-                        mAdapter.data = (ArrayList<PropertiesList.Datum>) body.getResult().getData();
+                    final PropertiesList body = response.body();
+                    if (body.getData() != null && body.getData().size() > 0) {
+                        txtTotal.setText(body.getData().size() + getString(R.string.str_properties));
+                        mAdapter.data = (ArrayList<PropertiesList.Datum>) body.getData();
                         mAdapter.notifyDataSetChanged();
                     } else {
                         txtLogin.setVisibility(MyApplication.getUserId() == -1 ? View.VISIBLE : View.GONE);
@@ -107,7 +117,7 @@ public class ShortlistFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ShortListedProperties> call, Throwable t) {
+            public void onFailure(Call<PropertiesList> call, Throwable t) {
 
                 if (mDialog.isShowing())
                     mDialog.dismiss();

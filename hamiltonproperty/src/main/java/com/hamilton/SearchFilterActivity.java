@@ -42,15 +42,13 @@ public class SearchFilterActivity extends AppCompatActivity {
     LinearLayout llContent;
     @BindView(R.id.txt_search)
     EditText txt_search;
+    Dialog mDialog;
+    SearchFilter searchFilter;
 
     @OnClick(R.id.lblSearch)
     public void searchData() {
 
     }
-
-
-    Dialog mDialog;
-    SearchFilter searchFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,11 +106,11 @@ public class SearchFilterActivity extends AppCompatActivity {
     private void setFilterLayout() {
         llContent.removeAllViews();
 
-        addCellData(searchFilter.getResult().getData().getBadrooms(), R.string.str_bedrooms);
-        addCellData(searchFilter.getResult().getData().getBathrooms(), R.string.str_bathrooms);
-        addCellData(searchFilter.getResult().getData().getCars(), R.string.str_car_parks);
-        addCellData(searchFilter.getResult().getData().getLandsize(), R.string.str_land_size);
-        addCellData(searchFilter.getResult().getData().getToilet(), R.string.str_toilets);
+        addCellData(searchFilter.getData().getBadrooms(), R.string.str_bedrooms);
+        addCellData(searchFilter.getData().getBathrooms(), R.string.str_bathrooms);
+        addCellData(searchFilter.getData().getCars(), R.string.str_car_parks);
+        addCellData(searchFilter.getData().getLandsize(), R.string.str_land_size);
+        addCellData(searchFilter.getData().getToilet(), R.string.str_toilets);
 
     }
 

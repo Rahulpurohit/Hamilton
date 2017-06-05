@@ -10,6 +10,7 @@ import com.hamilton.fragment.MeFragment;
 import com.hamilton.fragment.PropertiesFragment;
 import com.hamilton.fragment.SearchFragment;
 import com.hamilton.fragment.ShortlistFragment;
+import com.hamilton.utility.Constants;
 import com.hamilton.view.SwitchViewPager;
 import com.hamilton.view.ntb.NavigationTabBar;
 
@@ -19,14 +20,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity {
-    //private NavigationTabBar navigationTabBar;
-    private ArrayList<NavigationTabBar.Model> models;
-
     @BindView(R.id.home_pager)
     SwitchViewPager viewPager;
-
     @BindView(R.id.ntb)
     NavigationTabBar navigationTabBar;
+    //private NavigationTabBar navigationTabBar;
+    private ArrayList<NavigationTabBar.Model> models;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +75,9 @@ public class HomeActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(0);
         navigationTabBar.setViewPager(viewPager, 0);
 
+        int curIndex = getIntent().getIntExtra(Constants.KEY_PAGER_LOC, 0);
+        viewPager.setCurrentItem(curIndex);
+
     }
 
     private class CustomPagerAdapter extends FragmentPagerAdapter {
@@ -87,14 +89,10 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0:
-
-                {
+                case 0: {
                     return new SearchFragment();
                 }//CALENDAR
                 case 1: {
-
-//Assignment
                     return new PropertiesFragment();
                 }
                 case 2: {

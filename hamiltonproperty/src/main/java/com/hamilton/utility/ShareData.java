@@ -5,83 +5,78 @@ import android.content.SharedPreferences;
 
 public class ShareData {
 
-    private SharedPreferences mPref = null;
-    private SharedPreferences.Editor mEditor = null;
-    private Context mContext;
+    private final static String PREF_NAME = "hamilton";
+    private final static ShareData shareData = new ShareData();
+    private static SharedPreferences mPref = null;
+    private static SharedPreferences.Editor mEditor = null;
 
+    private ShareData() {
+    }
 
-    public ShareData(Context context) {
-        mContext = context;
+    public static ShareData getInstance(Context context) {
+        mPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return shareData;
     }
 
 
-    public void addToSharedPref(String prefName, String data) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    public void addToSharedPref(String key, String data) {
+
         mEditor = mPref.edit();
-        mEditor.putString(prefName, data);
-        mEditor.commit();
+        mEditor.putString(key, data);
+        mEditor.apply();
     }
 
-    public void addToSharedPref(String prefName, Integer data) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    public void addToSharedPref(String key, Integer data) {
         mEditor = mPref.edit();
-        mEditor.putInt(prefName, data);
-        mEditor.commit();
+        mEditor.putInt(key, data);
+        mEditor.apply();
 
     }
 
-    public void addToSharedPref(String prefName, Long value) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    public void addToSharedPref(String key, Long value) {
         mEditor = mPref.edit();
-        mEditor.putLong(prefName, value);
-        mEditor.commit();
+        mEditor.putLong(key, value);
+        mEditor.apply();
     }
 
-    public void addToSharedPref(String prefName, boolean value) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    public void addToSharedPref(String key, boolean value) {
         mEditor = mPref.edit();
-        mEditor.putBoolean(prefName, value);
-        mEditor.commit();
+        mEditor.putBoolean(key, value);
+        mEditor.apply();
     }
 
-    public void clearSharedPref(String prefName) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    public void clearSharedPref(String key) {
         mEditor = mPref.edit();
-        mEditor.remove(prefName);
-        mEditor.commit();
+        mEditor.remove(key);
+        mEditor.apply();
     }
 
     /**
      * Default value is null
      *
-     * @param prefName
+     * @param key
      * @return
      */
-    public String getDataFromSharedPref(String prefName) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
-        return mPref.getString(prefName, null);
+    public String getDataFromSharedPref(String key) {
+        return mPref.getString(key, null);
     }
 
-    public Boolean getBooleanFromSharedPref(String prefName, Boolean defaultValue) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
-        return mPref.getBoolean(prefName, defaultValue);
+    public Boolean getBooleanFromSharedPref(String key, Boolean defaultValue) {
+        return mPref.getBoolean(key, defaultValue);
     }
 
-    public void addToSharedPref(String prefName, Boolean value) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    public void addToSharedPref(String key, Boolean value) {
         mEditor = mPref.edit();
-        mEditor.putBoolean(prefName, value);
-        mEditor.commit();
+        mEditor.putBoolean(key, value);
+        mEditor.apply();
     }
 
-    public Integer getIntegerFromSharedPref(String prefName, Integer defaultValue) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
-        return mPref.getInt(prefName, defaultValue);
+    public Integer getIntegerFromSharedPref(String key, Integer defaultValue) {
+        return mPref.getInt(key, defaultValue);
     }
 
-    public Long getLongFromSharedPref(String prefName, Long defaultValue) {
-        mPref = mContext.getSharedPreferences(prefName, Context.MODE_PRIVATE);
-        return mPref.getLong(prefName, defaultValue);
+    public Long getLongFromSharedPref(String key, Long defaultValue) {
+        return mPref.getLong(key, defaultValue);
     }
 
 

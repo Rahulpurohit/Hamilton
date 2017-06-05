@@ -69,4 +69,7 @@
     <string name="str_permit_update_care">Permit Updates Care</string>
     <string name="str_back">Back</string>
     <string name="appointment">APPOINTMENT</string>
+    <string name="str_appointment">Appointment</string>
+    <string name="str_request_your_appointment">Request Your Appointment</string>
+    <string name="str_have_to_login"><![CDATA[You have to <font color=\'#FFB900\'><u>login</u></font> to use this feature]]></string>
 </resources>

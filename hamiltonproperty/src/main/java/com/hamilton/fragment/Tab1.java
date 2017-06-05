@@ -34,8 +34,8 @@ public class Tab1 extends Fragment {
 
     private void setData() {
         lblTab1.setText("");
-        if (MyApplication.getApplication().getUser() != null && MyApplication.getApplication().getUser().getResult().getData() != null) {
-            List<User.Result.Data.LandInformationDetail> buildingInformationDetails = MyApplication.getApplication().getUser().getResult().getData().getBuildingInformationDetails();
+        if (MyApplication.getUserId() != -1) {
+            List<User.Data.LandInformationDetail> buildingInformationDetails = MyApplication.getApplication().getUser().getData().getBuildingInformationDetails();
 
             for (int i = 0; buildingInformationDetails != null && i < buildingInformationDetails.size(); i++) {
                 if (!TextUtils.isEmpty(buildingInformationDetails.get(i).getUrl()))

@@ -21,13 +21,11 @@ import com.hamilton.application.MyApplication;
 
 public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListener {
     private static final String TAG = "tab";
+    boolean isVisibleToUser = false;
     //This is our tablayout
     private TabLayout tabLayout;
-
     //This is our viewPager
     private ViewPager viewPager;
-
-    boolean isVisibleToUser = false;
 
     public MeFragment() {
     }
@@ -38,17 +36,33 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
         View rootView = inflater.inflate(R.layout.fragment_me, container, false);
 
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (isVisibleToUser) {
+            if (MyApplication.getUserId() == -1 && getActivity() != null) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
+            }
+        }
+    }
+
+    @Override
+    public void onViewCreated(View rootView, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         toolbar.setVisibility(View.GONE);
         //Initializing the tablayout
+
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
 
-        if (isVisibleToUser) {
-            if (MyApplication.getApplication().getUser() == null && getActivity() != null) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        }
+
         //Adding the tabs using addTab() method
 
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.str_account_setting)));
@@ -70,7 +84,7 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
-
+        viewPager.setOffscreenPageLimit(6);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -95,13 +109,6 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
-
-        return rootView;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
     }
 

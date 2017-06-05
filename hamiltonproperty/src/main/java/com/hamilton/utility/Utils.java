@@ -5,13 +5,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 import android.view.Window;
@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hamilton.R;
+import com.hamilton.WebviewActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -144,7 +145,7 @@ public class Utils {
      * @param title
      * @param url   Make Bullet with web link without underline.
      */
-    public static void addBulletStyle(TextView tv, String title, String url) {
+    public static void addBulletStyle(final TextView tv, String title, String url) {
         String content = (tv.getContext().getResources().getString(R.string.str_bullet, "<font color='#000000'>" + "<a href=" + url + ">" + title + "</a></font>"));
         Spannable s = (Spannable) Html.fromHtml(content);
         for (URLSpan u : s.getSpans(0, s.length(), URLSpan.class)) {
@@ -158,12 +159,64 @@ public class Utils {
         tv.append(s);
         tv.append("\n");
         tv.setLinkTextColor(tv.getResources().getColor(R.color.black));
-        tv.setMovementMethod(LinkMovementMethod.getInstance());
+        //tv.setMovementMethod(LinkMovementMethod.getInstance());
+        tv.setMovementMethod(new TextViewClickMovement(new TextViewClickMovement.OnTextViewClickMovementListener() {
+
+
+            @Override
+            public void onLinkClicked(String linkText, String linkUrl, TextViewClickMovement.LinkType linkType) {
+                tv.getContext().startActivity(new Intent(tv.getContext(), WebviewActivity.class)
+                        .putExtra(Constants.KEY_TITLE, linkText)
+                        .putExtra(Constants.KEY_WEB_URL, linkUrl));
+            }
+
+            @Override
+            public void onLongClick(String text) {
+
+            }
+        }, tv.getContext()));
 
 
     }
 
-    private static ConnectivityManager mCM;
+    /**
+     * @param tv
+     * @param title
+     * @param url   Make Bullet with web link without underline.
+     */
+    public static void addBulletStyle(final TextView tv, String title, String url) {
+        String content = (tv.getContext().getResources().getString(R.string.str_bullet, "<font color='#000000'>" + "<a href=" + url + ">" + title + "</a></font>"));
+        Spannable s = (Spannable) Html.fromHtml(content);
+        for (URLSpan u : s.getSpans(0, s.length(), URLSpan.class)) {
+            s.setSpan(new UnderlineSpan() {
+                public void updateDrawState(TextPaint tp) {
+                    tp.setUnderlineText(false);
+                }
+            }, s.getSpanStart(u), s.getSpanEnd(u), 0);
+        }
+        tv.setLineSpacing(0f, 1.3f);
+        tv.append(s);
+        tv.append("\n");
+        tv.setLinkTextColor(tv.getResources().getColor(R.color.black));
+        //tv.setMovementMethod(LinkMovementMethod.getInstance());
+        tv.setMovementMethod(new TextViewClickMovement(new TextViewClickMovement.OnTextViewClickMovementListener() {
+
+
+            @Override
+            public void onLinkClicked(String linkText, String linkUrl, TextViewClickMovement.LinkType linkType) {
+                tv.getContext().startActivity(new Intent(tv.getContext(), WebviewActivity.class)
+                        .putExtra(Constants.KEY_TITLE, linkText)
+                        .putExtra(Constants.KEY_WEB_URL, linkUrl));
+            }
+
+            @Override
+            public void onLongClick(String text) {
+
+            }
+        }, tv.getContext()));
+
+
+    }    private static ConnectivityManager mCM;
 
     public static boolean hasInternetAccess(Context context) {
         if (mCM == null) {
