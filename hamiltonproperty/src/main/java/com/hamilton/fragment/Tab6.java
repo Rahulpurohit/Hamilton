@@ -38,6 +38,7 @@ public class Tab6 extends Fragment {
     public void LogoutButtonClicked() {
         MyApplication.getApplication().setUser(null);
         startActivity(new Intent(getActivity(), HomeActivity.class));
+        getActivity().finish();
     }
 
     @OnClick(R.id.btnLoginUser)
@@ -63,8 +64,8 @@ public class Tab6 extends Fragment {
     }
 
     private void setData() {
-        if (MyApplication.getApplication().getUser() != null) {
-            lblAccountEmail.setText(MyApplication.getApplication().getUser().getResult().getData().getUserEmail());
+        if (MyApplication.getUserId() != -1) {
+            lblAccountEmail.setText(MyApplication.getApplication().getUser().getData().getUserEmail());
         }
     }
 

@@ -53,7 +53,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
 
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final PropertiesList.Datum datum = data.get(position);
         final String propertyImage = datum.getPropertyImage();
         if (!TextUtils.isEmpty(propertyImage)) {
@@ -102,7 +102,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
                         Log.e("res body :- ", "" + response.body());
                         if (response.isSuccessful()) {
                             data.get(holder.getAdapterPosition()).setIslike(!datum.getIslike());
-                            notifyDataSetChanged();
+                            notifyItemChanged(holder.getAdapterPosition());
                             animation.cancel();
                         } else {
                             final String errorResponse = Utils.convertStreamToString(response.errorBody().byteStream());
@@ -110,8 +110,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
                             BaseError baseError = new BaseError(errorResponse, errorType);
                             Toast.makeText(holder.imgUserLike.getContext(), "" + baseError.getErrorModel().getMessage(), Toast.LENGTH_LONG).show();
                             animation.cancel();
-                            notifyDataSetChanged();
-
+                            notifyItemChanged(holder.getAdapterPosition());
                         }
                     }
 
@@ -119,7 +118,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
                     public void onFailure(Call<LikeUnlikeProperty> call, Throwable t) {
                         Toast.makeText(holder.imgUserLike.getContext(), holder.imgUserLike.getContext().getString(R.string.err_internet), Toast.LENGTH_SHORT).show();
                         animation.cancel();
-                        notifyDataSetChanged();
+                        notifyItemChanged(holder.getAdapterPosition());
 
                     }
                 });

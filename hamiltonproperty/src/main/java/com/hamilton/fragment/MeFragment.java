@@ -21,13 +21,11 @@ import com.hamilton.application.MyApplication;
 
 public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListener {
     private static final String TAG = "tab";
+    boolean isVisibleToUser = false;
     //This is our tablayout
     private TabLayout tabLayout;
-
     //This is our viewPager
     private ViewPager viewPager;
-
-    boolean isVisibleToUser = false;
 
     public MeFragment() {
     }
@@ -45,8 +43,9 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
 
         if (isVisibleToUser) {
-            if (MyApplication.getApplication().getUser() == null && getActivity() != null) {
+            if (MyApplication.getUserId() == -1 && getActivity() != null) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
             }
         }
         //Adding the tabs using addTab() method
@@ -70,7 +69,7 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
-
+        viewPager.setOffscreenPageLimit(6);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

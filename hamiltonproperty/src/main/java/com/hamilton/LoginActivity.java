@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView lblAlreadyHaveAccount;
 
     @OnClick(R.id.btnLoginUser)
-    public void LoginButtonClicked() {
+    public void loginButtonClicked() {
         if (TextUtils.isEmpty(txt_signup_username.getText())) {
             Utils.showErrorBox(this, getResources().getString(R.string.error), getResources().getString(R.string.err_username));
             //setError(getString(R.string.err_username));
@@ -121,11 +121,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void callHomeScreen() {
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        intent.putExtra(Constants.KEY_PAGER_LOC, 3);
+        startActivity(intent);
         finish();
+
     }
 
     @Override
     public void onBackPressed() {
         Log.d(TAG, "onBackPressed() called");
+        if (MyApplication.getUserId() != -1)
+            callHomeScreen();
+
+
     }
 }

@@ -5,6 +5,8 @@ package com.hamilton.utility;
  */
 
 public class Constants {
+    public static final String KEY_PAGER_LOC = "KEY_PAGER_LOC";
+
     public static final String KEY_LOGIN_DATA = "KEY_LOGIN_DATA";
     public static final String KEY_USERNAME = "KEY_USERNAME";
     public static final String KEY_TITLE = "KEY_TITLE";

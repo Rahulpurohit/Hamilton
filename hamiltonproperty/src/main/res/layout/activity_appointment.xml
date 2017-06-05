@@ -6,25 +6,12 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
+    <com.hamilton.view.TypefacedTextView
+        android:id="@+id/lblHeader"
         style="@style/style_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left|start"
-        android:text="@string/str_properties">
-
-        <com.hamilton.view.TypefacedTextView
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:drawableLeft="@drawable/ic_back"
-            android:gravity="center"
-            android:text="@string/str_back" />
-
-    </RelativeLayout>
+        android:text="@string/str_appointment" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
@@ -32,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/relativeLayout2"
+        android:layout_below="@+id/lblHeader"
         android:orientation="vertical">
 
         <com.hamilton.view.TypefacedTextView
@@ -41,9 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="3dp"
-            android:text="Request Your Appointment"
+            android:text="@string/str_request_your_appointment"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="22dp" />
 
         <View
             android:layout_width="match_parent"

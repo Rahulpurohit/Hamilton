@@ -58,17 +58,17 @@ public class Tab4 extends Fragment {
         lblTab1.setText("");
 
         User user = MyApplication.getApplication().getUser();
-        if (user != null && user.getResult().getData() != null) {
+        if (MyApplication.getUserId() != -1) {
 
-            if (!TextUtils.isEmpty(user.getResult().getData().getContractUpdates()))
-                Utils.addBulletStyle(lblTab1, getString(R.string.str_contract_updates), user.getResult().getData().getContractUpdates());
+            if (!TextUtils.isEmpty(user.getData().getContractUpdates()))
+                Utils.addBulletStyle(lblTab1, getString(R.string.str_contract_updates), user.getData().getContractUpdates());
 
-            if (!TextUtils.isEmpty(user.getResult().getData().getPermitUpdatesCare()))
-                Utils.addBulletStyle(lblTab1, getString(R.string.str_permit_update_care), user.getResult().getData().getPermitUpdatesCare());
+            if (!TextUtils.isEmpty(user.getData().getPermitUpdatesCare()))
+                Utils.addBulletStyle(lblTab1, getString(R.string.str_permit_update_care), user.getData().getPermitUpdatesCare());
 
-            lblSupervisorName.setText(user.getResult().getData().getSupervisorName());
-            lblSupervisorEmail.setText(user.getResult().getData().getSupervisorEmail());
-            lblSupervisorPhone.setText(user.getResult().getData().getSupervisorPhone());
+            lblSupervisorName.setText(user.getData().getSupervisorName());
+            lblSupervisorEmail.setText(user.getData().getSupervisorEmail());
+            lblSupervisorPhone.setText(user.getData().getSupervisorPhone());
         }
 
 

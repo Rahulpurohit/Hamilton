@@ -69,4 +69,6 @@
     <string name="str_permit_update_care">Permit Updates Care</string>
     <string name="str_back">Back</string>
     <string name="appointment">APPOINTMENT</string>
+    <string name="str_appointment">Appointment</string>
+    <string name="str_request_your_appointment">Request Your Appointment</string>
 </resources>

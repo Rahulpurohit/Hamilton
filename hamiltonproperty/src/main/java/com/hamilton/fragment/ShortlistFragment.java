@@ -17,7 +17,6 @@ import com.hamilton.R;
 import com.hamilton.adapter.PropertyAdapter;
 import com.hamilton.application.MyApplication;
 import com.hamilton.modal.PropertiesList;
-import com.hamilton.modal.ShortListedProperties;
 import com.hamilton.modal.error.BaseError;
 import com.hamilton.utility.Constants;
 import com.hamilton.utility.Utils;
@@ -33,9 +32,6 @@ import retrofit2.Response;
 
 
 public class ShortlistFragment extends Fragment {
-    public ShortlistFragment() {
-    }
-
     @BindView(R.id.txt_header)
     TextView txtHeader;
     @BindView(R.id.txt_total)
@@ -48,6 +44,9 @@ public class ShortlistFragment extends Fragment {
     TextView txtLogin;
     PropertyAdapter mAdapter;
     private Dialog mDialog;
+
+    public ShortlistFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +70,7 @@ public class ShortlistFragment extends Fragment {
         txtTotal.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         txtSort.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         if (MyApplication.getUserId() != -1)
-        getApiDataProperties();
+            getApiDataProperties();
     }
 
     private void getApiDataProperties() {
@@ -80,17 +79,17 @@ public class ShortlistFragment extends Fragment {
         mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<ShortListedProperties> userCall = MyApplication.getApplication().getClient().getShortlistedPropertiesList(Constants.key, MyApplication.getUserId());
-        userCall.enqueue(new Callback<ShortListedProperties>() {
+        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getShortlistedPropertiesList(Constants.key, MyApplication.getUserId());
+        userCall.enqueue(new Callback<PropertiesList>() {
             @Override
-            public void onResponse(Call<ShortListedProperties> call, Response<ShortListedProperties> response) {
+            public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
                 Log.e("res body :- ", "" + response.body());
                 mDialog.dismiss();
                 if (response.isSuccessful()) {
-                    final ShortListedProperties body = response.body();
-                    if (body.getResult().getData()!= null &&body.getResult().getData().size() > 0) {
-                        txtTotal.setText(body.getResult().getData().size() + getString(R.string.str_properties));
-                        mAdapter.data = (ArrayList<PropertiesList.Datum>) body.getResult().getData();
+                    final PropertiesList body = response.body();
+                    if (body.getData() != null && body.getData().size() > 0) {
+                        txtTotal.setText(body.getData().size() + getString(R.string.str_properties));
+                        mAdapter.data = (ArrayList<PropertiesList.Datum>) body.getData();
                         mAdapter.notifyDataSetChanged();
                     } else {
                         txtLogin.setVisibility(MyApplication.getUserId() == -1 ? View.VISIBLE : View.GONE);
@@ -107,7 +106,7 @@ public class ShortlistFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ShortListedProperties> call, Throwable t) {
+            public void onFailure(Call<PropertiesList> call, Throwable t) {
 
                 if (mDialog.isShowing())
                     mDialog.dismiss();

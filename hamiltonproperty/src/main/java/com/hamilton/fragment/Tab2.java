@@ -27,7 +27,6 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab2, container, false);
         ButterKnife.bind(this, view);
-        setData();
 
         return view;
     }
@@ -35,8 +34,8 @@ public class Tab2 extends Fragment {
     private void setData() {
 
         lblTab1.setText("");
-        if (MyApplication.getApplication().getUser() != null && MyApplication.getApplication().getUser().getResult().getData() != null) {
-            List<User.Result.Data.LandInformationDetail> buildingInformationDetails = MyApplication.getApplication().getUser().getResult().getData().getLandInformationDetails();
+        if (MyApplication.getUserId() != -1) {
+            List<User.Data.LandInformationDetail> buildingInformationDetails = MyApplication.getApplication().getUser().getData().getLandInformationDetails();
 
             for (int i = 0; buildingInformationDetails != null && i < buildingInformationDetails.size(); i++) {
                 if (!TextUtils.isEmpty(buildingInformationDetails.get(i).getUrl()))
@@ -46,16 +45,11 @@ public class Tab2 extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        setData();
-    }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setData();
 
     }
 

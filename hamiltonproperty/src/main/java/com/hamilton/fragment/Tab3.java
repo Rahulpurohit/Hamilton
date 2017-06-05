@@ -58,8 +58,8 @@ public class Tab3 extends Fragment {
     private void setData() {
 
         lblTab1.setText("");
-        if (MyApplication.getApplication().getUser() != null && MyApplication.getApplication().getUser().getResult().getData() != null) {
-            List<User.Result.Data.LandInformationDetail> buildingInformationDetails = MyApplication.getApplication().getUser().getResult()
+        if (MyApplication.getUserId() != -1) {
+            List<User.Data.LandInformationDetail> buildingInformationDetails = MyApplication.getApplication().getUser()
                     .getData().getBuildingUpdates();
 
             for (int i = 0; buildingInformationDetails != null && i < buildingInformationDetails.size(); i++) {
@@ -68,8 +68,8 @@ public class Tab3 extends Fragment {
             }
 
 
-            if (!TextUtils.isEmpty(MyApplication.getApplication().getUser().getResult().getData().getSupervisorPhone())) {
-                lblSupervisorNumber.setText(MyApplication.getApplication().getUser().getResult()
+            if (!TextUtils.isEmpty(MyApplication.getApplication().getUser().getData().getSupervisorPhone())) {
+                lblSupervisorNumber.setText(MyApplication.getApplication().getUser()
                         .getData().getSupervisorPhone());
                 lblSupervisorNumberTitle.setVisibility(View.VISIBLE);
                 lblSupervisorNumber.setVisibility(View.VISIBLE);
@@ -90,10 +90,10 @@ public class Tab3 extends Fragment {
             rvList.setAdapter(mAdapter);
 
             if (MyApplication.getApplication().getUser() != null &&
-                    MyApplication.getApplication().getUser().getResult().getData() != null
-                    && MyApplication.getApplication().getUser().getResult().getData().getStageProgressPhotos() != null) {
+                    MyApplication.getApplication().getUser().getData() != null
+                    && MyApplication.getApplication().getUser().getData().getStageProgressPhotos() != null) {
                 lblSupervisorBuildingPhotoTitle.setVisibility(View.VISIBLE);
-                mAdapter.data = (ArrayList<String>) MyApplication.getApplication().getUser().getResult().getData().getStageProgressPhotos();
+                mAdapter.data = (ArrayList<String>) MyApplication.getApplication().getUser().getData().getStageProgressPhotos();
                 mAdapter.notifyDataSetChanged();
 
             } else {

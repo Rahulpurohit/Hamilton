@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder;
 import com.hamilton.modal.ApiInterface;
 import com.hamilton.modal.User;
 import com.hamilton.utility.Constants;
-import com.hamilton.utility.Serializer;
 import com.hamilton.utility.ShareData;
 import com.hamilton.utility.Utils;
 
@@ -26,25 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class MyApplication extends MultiDexApplication {
-    private static MyApplication myApplication;
     public static final String BASE_URL = "http://hamiltonpropertygroup.com.au/";
+    private static MyApplication myApplication;
     public User loginData;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        setApplication(this);
-    }
-
-
-    public static void setApplication(MyApplication myApplication) {
-        MyApplication.myApplication = myApplication;
-    }
-
-    public static MyApplication getApplication() {
-        return myApplication;
-    }
-
     Interceptor interceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
@@ -53,6 +36,27 @@ public class MyApplication extends MultiDexApplication {
         }
     };
 
+    public static MyApplication getApplication() {
+        return myApplication;
+    }
+
+    public static void setApplication(MyApplication myApplication) {
+        MyApplication.myApplication = myApplication;
+    }
+
+    public static int getUserId() {
+        try {
+            return MyApplication.getApplication().getUser().getData().getUserId();
+        } catch (NullPointerException e) {
+            return -1;
+        }
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        setApplication(this);
+    }
 
     public ApiInterface getClient() {
 
@@ -77,9 +81,8 @@ public class MyApplication extends MultiDexApplication {
         return retrofit.create(ApiInterface.class);
     }
 
-
     public User getUser() {
-        try {
+        /*try {
             String userData = null;
             if (loginData == null
                     && (userData = new ShareData(getApplicationContext()).getDataFromSharedPref(Constants.KEY_LOGIN_DATA)) != null) {
@@ -87,8 +90,8 @@ public class MyApplication extends MultiDexApplication {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        return loginData;
+        }*/
+        return new Gson().fromJson(ShareData.getInstance(getApplicationContext()).getDataFromSharedPref(Constants.KEY_LOGIN_DATA), User.class);
     }
 
     public void setUser(User loginData) {
@@ -97,19 +100,11 @@ public class MyApplication extends MultiDexApplication {
     }
 
     public void initUser(User currentUser, boolean forceWrite) {
-
-        if (new ShareData(getApplicationContext()).getDataFromSharedPref(Constants.KEY_LOGIN_DATA) == null || new ShareData(getApplicationContext()).getDataFromSharedPref(Constants.KEY_LOGIN_DATA).equals("") || forceWrite) {
+        ShareData.getInstance(getApplicationContext()).addToSharedPref(Constants.KEY_LOGIN_DATA, new Gson().toJson(currentUser));
+        /*if (new ShareData(getApplicationContext()).getDataFromSharedPref(Constants.KEY_LOGIN_DATA) == null || new ShareData(getApplicationContext()).getDataFromSharedPref(Constants.KEY_LOGIN_DATA).equals("") || forceWrite) {
             new ShareData(getApplicationContext()).clearSharedPref(Constants.KEY_LOGIN_DATA);
             new ShareData(getApplicationContext()).addToSharedPref(Constants.KEY_LOGIN_DATA, Serializer.serialize(currentUser));
         }
-        this.loginData = currentUser;
-    }
-
-    public static int getUserId() {
-        try {
-            return MyApplication.getApplication().getUser().getResult().getData().getUserId();
-        } catch (NullPointerException e) {
-            return -1;
-        }
+        this.loginData = currentUser;*/
     }
 }
