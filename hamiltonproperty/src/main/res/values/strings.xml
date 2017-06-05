@@ -67,4 +67,6 @@
     <string name="no_network_access">No Internet Access</string>
     <string name="str_contract_updates">Contract Updates</string>
     <string name="str_permit_update_care">Permit Updates Care</string>
+    <string name="str_back">Back</string>
+    <string name="appointment">APPOINTMENT</string>
 </resources>

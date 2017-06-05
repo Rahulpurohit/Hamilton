@@ -47,6 +47,7 @@ public class PropertiesList implements Parcelable {
 
     public static class Datum implements Parcelable {
 
+
         @SerializedName("PropertyId")
         @Expose
         private Integer propertyId;

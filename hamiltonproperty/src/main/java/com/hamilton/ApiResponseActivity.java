@@ -9,7 +9,6 @@ import android.widget.Toast;
 import com.hamilton.application.MyApplication;
 import com.hamilton.modal.PropertiesList;
 import com.hamilton.modal.SearchFilter;
-import com.hamilton.modal.ShortListedProperties;
 import com.hamilton.modal.User;
 import com.hamilton.modal.error.BaseError;
 import com.hamilton.utility.Constants;
@@ -147,7 +146,7 @@ public class ApiResponseActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<ShortListedProperties> userCall = MyApplication.getApplication().getClient().getShortlistedPropertiesList(Constants.key, userId);
+        /*Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getShortlistedPropertiesList(Constants.key, 1);
         userCall.enqueue(new Callback<ShortListedProperties>() {
             @Override
             public void onResponse(Call<ShortListedProperties> call, Response<ShortListedProperties> response) {
@@ -173,7 +172,7 @@ public class ApiResponseActivity extends AppCompatActivity {
 
                 Log.e("User data", "Error");
             }
-        });
+        });*/
     }
 
 

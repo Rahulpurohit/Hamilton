@@ -1,5 +1,6 @@
 package com.hamilton.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
@@ -15,8 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.hamilton.PropertyDetailActivity;
 import com.hamilton.R;
 import com.hamilton.application.MyApplication;
+import com.hamilton.modal.LikeUnlikeProperty;
 import com.hamilton.modal.PropertiesList;
 import com.hamilton.modal.error.BaseError;
 import com.hamilton.utility.Constants;
@@ -50,7 +53,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
 
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         final PropertiesList.Datum datum = data.get(position);
         final String propertyImage = datum.getPropertyImage();
         if (!TextUtils.isEmpty(propertyImage)) {
@@ -86,19 +89,19 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
                 final Animation animation = AnimationUtils.loadAnimation(v.getContext(), R.anim.rotationanim);
                 v.setAnimation(animation);
 
-                Call t;
+                Call<LikeUnlikeProperty> t;
                 if (!datum.getIslike()) {
                     t = MyApplication.getApplication().getClient().likeProperty(Constants.key, MyApplication.getUserId(), datum.getPropertyId());
                 } else {
                     t = MyApplication.getApplication().getClient().unlikeProperty(Constants.key, MyApplication.getUserId(), datum.getPropertyId());
 
                 }
-                t.enqueue(new Callback<PropertiesList>() {
+                t.enqueue(new Callback<LikeUnlikeProperty>() {
                     @Override
-                    public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
+                    public void onResponse(Call<LikeUnlikeProperty> call, Response<LikeUnlikeProperty> response) {
                         Log.e("res body :- ", "" + response.body());
                         if (response.isSuccessful()) {
-                            data.get(position).setIslike(!datum.getIslike());
+                            data.get(holder.getAdapterPosition()).setIslike(!datum.getIslike());
                             notifyDataSetChanged();
                             animation.cancel();
                         } else {
@@ -113,13 +116,21 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
                     }
 
                     @Override
-                    public void onFailure(Call<PropertiesList> call, Throwable t) {
+                    public void onFailure(Call<LikeUnlikeProperty> call, Throwable t) {
                         Toast.makeText(holder.imgUserLike.getContext(), holder.imgUserLike.getContext().getString(R.string.err_internet), Toast.LENGTH_SHORT).show();
                         animation.cancel();
                         notifyDataSetChanged();
 
                     }
                 });
+            }
+        });
+        holder.mClickView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent i = new Intent(v.getContext(), PropertyDetailActivity.class);
+                i.putExtra("PROPERTY_DATA", datum);
+                v.getContext().startActivity(i);
             }
         });
 
@@ -156,9 +167,11 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
         @BindView(R.id.img_userLike)
         ImageView imgUserLike;
 
+        View mClickView;
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            mClickView = view;
         }
     }
 }
