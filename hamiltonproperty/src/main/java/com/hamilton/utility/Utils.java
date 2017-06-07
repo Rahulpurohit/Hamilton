@@ -32,6 +32,8 @@ import java.io.InputStreamReader;
 import okhttp3.Request;
 
 public class Utils {
+    private static ConnectivityManager mCM;
+
     public static void showErrorBox(Activity context, String title, String msg) {
 
 
@@ -178,45 +180,6 @@ public class Utils {
 
 
     }
-
-    /**
-     * @param tv
-     * @param title
-     * @param url   Make Bullet with web link without underline.
-     */
-    public static void addBulletStyle(final TextView tv, String title, String url) {
-        String content = (tv.getContext().getResources().getString(R.string.str_bullet, "<font color='#000000'>" + "<a href=" + url + ">" + title + "</a></font>"));
-        Spannable s = (Spannable) Html.fromHtml(content);
-        for (URLSpan u : s.getSpans(0, s.length(), URLSpan.class)) {
-            s.setSpan(new UnderlineSpan() {
-                public void updateDrawState(TextPaint tp) {
-                    tp.setUnderlineText(false);
-                }
-            }, s.getSpanStart(u), s.getSpanEnd(u), 0);
-        }
-        tv.setLineSpacing(0f, 1.3f);
-        tv.append(s);
-        tv.append("\n");
-        tv.setLinkTextColor(tv.getResources().getColor(R.color.black));
-        //tv.setMovementMethod(LinkMovementMethod.getInstance());
-        tv.setMovementMethod(new TextViewClickMovement(new TextViewClickMovement.OnTextViewClickMovementListener() {
-
-
-            @Override
-            public void onLinkClicked(String linkText, String linkUrl, TextViewClickMovement.LinkType linkType) {
-                tv.getContext().startActivity(new Intent(tv.getContext(), WebviewActivity.class)
-                        .putExtra(Constants.KEY_TITLE, linkText)
-                        .putExtra(Constants.KEY_WEB_URL, linkUrl));
-            }
-
-            @Override
-            public void onLongClick(String text) {
-
-            }
-        }, tv.getContext()));
-
-
-    }    private static ConnectivityManager mCM;
 
     public static boolean hasInternetAccess(Context context) {
         if (mCM == null) {

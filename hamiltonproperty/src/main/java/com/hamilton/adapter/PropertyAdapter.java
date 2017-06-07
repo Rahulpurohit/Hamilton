@@ -167,6 +167,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
         ImageView imgUserLike;
 
         View mClickView;
+
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

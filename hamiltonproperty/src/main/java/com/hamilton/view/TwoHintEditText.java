@@ -71,4 +71,12 @@ public class TwoHintEditText extends RelativeLayout {
         }
 
     }
+
+    public EditText getActiveField() {
+        return activeField;
+    }
+
+    public EditText getNonActiveEditText() {
+        return nonActiveEditText;
+    }
 }

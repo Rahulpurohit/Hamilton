@@ -3,6 +3,7 @@ package com.hamilton.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.hamilton.R;
 import com.hamilton.SearchFilterActivity;
+import com.hamilton.utility.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +63,8 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    startActivity(new Intent(getActivity(), SearchFilterActivity.class));
+                    startActivity(new Intent(getActivity(), SearchFilterActivity.class)
+                            .putExtra(Constants.KEY_SEARCH_KEY, TextUtils.isEmpty(txtSearch.getText()) ? "" : txtSearch.getText().toString()));
                     return true;
                 }
                 return false;

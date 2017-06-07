@@ -31,5 +31,19 @@ public interface ApiInterface {
     @POST("web/loginUnlike.php")
     Call<LikeUnlikeProperty> unlikeProperty(@Field("key") String key, @Field("userId") int userId, @Field("propertyId") int propertyId);
 
+    @FormUrlEncoded
+    @POST("web/loginPropertyFilterList.php")
+    Call<PropertiesList> getPropertyFilterList(@Field("key") String key
+            , @Field("keywords") String keywords
+            , @Field("bordering") String bordering
+            , @Field("residential") String residential
+            , @Field("Commercial") String Commercial
+            , @Field("minprice") String minprice
+            , @Field("maxprice") String maxprice
+            , @Field("bed") String bed
+            , @Field("bath") String bath
+            , @Field("car") String car
+    );
+
 
 }

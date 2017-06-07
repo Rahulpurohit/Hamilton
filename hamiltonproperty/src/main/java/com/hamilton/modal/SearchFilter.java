@@ -63,6 +63,15 @@ public class SearchFilter implements Serializable {
         @Expose
         private List<String> toilet = null;
 
+        @SerializedName("propertyType")
+        @Expose
+        private List<String> propertyType = null;
+
+        @SerializedName("prices")
+        @Expose
+        private List<String> prices = null;
+
+
         public List<String> getBadrooms() {
             return badrooms;
         }
@@ -103,6 +112,21 @@ public class SearchFilter implements Serializable {
             this.toilet = toilet;
         }
 
+        public List<String> getPropertyType() {
+            return propertyType;
+        }
+
+        public void setPropertyType(List<String> propertyType) {
+            this.propertyType = propertyType;
+        }
+
+        public List<String> getPrices() {
+            return prices;
+        }
+
+        public void setPrices(List<String> prices) {
+            this.prices = prices;
+        }
     }
 
 
