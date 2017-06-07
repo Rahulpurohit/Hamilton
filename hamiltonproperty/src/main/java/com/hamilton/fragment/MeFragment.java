@@ -40,19 +40,6 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-        if (isVisibleToUser) {
-            if (MyApplication.getUserId() == -1 && getActivity() != null) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-                getActivity().finish();
-            }
-        }
-    }
-
-
-    @Override
     public void onViewCreated(View rootView, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
 
@@ -132,6 +119,12 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         this.isVisibleToUser = isVisibleToUser;
-
+        if (isVisibleToUser && getActivity() != null) {
+            if (MyApplication.getUserId() == -1 && getActivity() != null) {
+                startActivity(new Intent(getActivity(), LoginActivity.class)
+                        .putExtra("fromtab", 3));
+                getActivity().finish();
+            }
+        }
     }
 }

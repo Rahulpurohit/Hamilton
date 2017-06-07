@@ -3,6 +3,7 @@ package com.hamilton.fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -58,7 +59,7 @@ public class PropertiesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        mAdapter = new PropertyAdapter();
+        mAdapter = new PropertyAdapter(false);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerProperty.setLayoutManager(mLayoutManager);
         recyclerProperty.setItemAnimator(new DefaultItemAnimator());
@@ -66,6 +67,16 @@ public class PropertiesFragment extends Fragment {
 
 
         getApiDataProperties();
+
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_to_refresh_home);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (swipeRefreshLayout.isRefreshing())
+                    swipeRefreshLayout.setRefreshing(false);
+                getApiDataProperties();
+            }
+        });
     }
 
     private void getApiDataProperties() {

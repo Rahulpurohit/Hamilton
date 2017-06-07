@@ -43,6 +43,9 @@ public interface ApiInterface {
             , @Field("bed") String bed
             , @Field("bath") String bath
             , @Field("car") String car
+            , @Field("toilets") String toilets
+            , @Field("landsize") String landsize
+            , @Field("type") String type
     );
 
 

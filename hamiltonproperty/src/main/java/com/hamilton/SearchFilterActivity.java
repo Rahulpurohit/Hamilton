@@ -52,8 +52,9 @@ public class SearchFilterActivity extends AppCompatActivity {
     EditText txt_search;
     Dialog mDialog;
     SearchFilter searchFilter;
-    String keywords = "", bordering = "", residential = "", alltype = "", minprice = "", maxprice = "", bed, bath, car, toilets = "", size = "";
+    String keywords = "", bordering = "", residential = "", alltype = "", minprice = "", maxprice = "", bed = "", bath = "", car = "", toilets = "", landsize = "", type = "rent";
     List<PropertiesList.Datum> arrProperty = new ArrayList<>();
+    RadioButton buttonOne;
 
     @OnClick(R.id.rl_filter_price_range)
     public void selectPriceRange() {
@@ -99,6 +100,12 @@ public class SearchFilterActivity extends AppCompatActivity {
 
             }
 
+            if (txtFilterPropertyType.getText() != null) {
+                landsize = txtFilterPropertyType.getText().toString();
+            }
+
+            type = (buttonOne.isChecked() ? "buy" : "rent");
+
             alltype = txtFilterPropertyType.getText().toString().equalsIgnoreCase(getString(R.string.str_any)) ? "" : txtFilterPropertyType.getText().toString();
 
 
@@ -113,7 +120,7 @@ public class SearchFilterActivity extends AppCompatActivity {
                     car = selectedtext;
                     break;
                 case "Land Size":
-                    size = selectedtext;
+                    landsize = selectedtext;
                     break;
                 case "Toilets":
                     toilets = selectedtext;
@@ -134,7 +141,7 @@ public class SearchFilterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_screen_filter);
         ButterKnife.bind(this);
 
-        final RadioButton buttonOne = (RadioButton) radioTabGroup.getChildAt(0);
+        buttonOne = (RadioButton) radioTabGroup.getChildAt(0);
         buttonOne.setChecked(true);
 
         txt_search.setText(getIntent().getStringExtra(Constants.KEY_SEARCH_KEY));
@@ -189,7 +196,7 @@ public class SearchFilterActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertyFilterList(Constants.key, keywords, bordering, residential, alltype, minprice, maxprice, bed, bath, car);
+        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertyFilterList(Constants.key, keywords, bordering, residential, alltype, minprice, maxprice, bed, bath, car, toilets, landsize, type);
         userCall.enqueue(new Callback<PropertiesList>() {
             @Override
             public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
@@ -205,8 +212,6 @@ public class SearchFilterActivity extends AppCompatActivity {
                         intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) arrProperty);
                         setResult(RESULT_OK, intent);
                         finish();
-
-
                     }
                     // Redirect to Home Fragment
                 } else {

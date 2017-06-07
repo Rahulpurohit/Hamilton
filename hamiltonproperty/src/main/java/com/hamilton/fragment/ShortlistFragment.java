@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -54,7 +55,7 @@ public class ShortlistFragment extends Fragment {
 
     @OnClick(R.id.txt_login)
     public void gotoLogin() {
-        startActivity(new Intent(getActivity(), LoginActivity.class));
+        startActivity(new Intent(getActivity(), LoginActivity.class).putExtra("fromtab", 2));
 
     }
 
@@ -69,7 +70,7 @@ public class ShortlistFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        mAdapter = new PropertyAdapter();
+        mAdapter = new PropertyAdapter(true, txtTotal);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerProperty.setLayoutManager(mLayoutManager);
         recyclerProperty.setItemAnimator(new DefaultItemAnimator());
@@ -82,6 +83,16 @@ public class ShortlistFragment extends Fragment {
         txtSort.setVisibility(MyApplication.getUserId() == -1 ? View.GONE : View.VISIBLE);
         if (MyApplication.getUserId() != -1)
             getApiDataProperties();
+
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_to_refresh_home);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (swipeRefreshLayout.isRefreshing())
+                    swipeRefreshLayout.setRefreshing(false);
+                getApiDataProperties();
+            }
+        });
     }
 
     private void getApiDataProperties() {
