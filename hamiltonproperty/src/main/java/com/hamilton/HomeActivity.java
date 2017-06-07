@@ -10,11 +10,13 @@ import com.hamilton.fragment.MeFragment;
 import com.hamilton.fragment.PropertiesFragment;
 import com.hamilton.fragment.SearchFragment;
 import com.hamilton.fragment.ShortlistFragment;
+import com.hamilton.modal.PropertiesList;
 import com.hamilton.utility.Constants;
 import com.hamilton.view.SwitchViewPager;
 import com.hamilton.view.ntb.NavigationTabBar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,8 +26,10 @@ public class HomeActivity extends AppCompatActivity {
     SwitchViewPager viewPager;
     @BindView(R.id.ntb)
     NavigationTabBar navigationTabBar;
+    PropertiesFragment propertiesFragment = new PropertiesFragment();
     //private NavigationTabBar navigationTabBar;
     private ArrayList<NavigationTabBar.Model> models;
+    private CustomPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         navigationTabBar.setIsTinted(false);
-        viewPager.setAdapter(new CustomPagerAdapter(getSupportFragmentManager()));
+        adapter = new CustomPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
         viewPager.setPagingEnabled(true);
         models = new ArrayList<>();
 
@@ -80,6 +85,12 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    public void callPropertyListFragment(List<PropertiesList.Datum> datumList) {
+        viewPager.setCurrentItem(1);
+        propertiesFragment.setDatumList(datumList);
+
+    }
+
     private class CustomPagerAdapter extends FragmentPagerAdapter {
 
         public CustomPagerAdapter(FragmentManager fm) {
@@ -93,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
                     return new SearchFragment();
                 }//CALENDAR
                 case 1: {
-                    return new PropertiesFragment();
+                    return propertiesFragment;
                 }
                 case 2: {
 

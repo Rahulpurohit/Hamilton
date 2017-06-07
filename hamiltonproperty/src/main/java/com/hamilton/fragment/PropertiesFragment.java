@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hamilton.R;
@@ -23,6 +22,7 @@ import com.hamilton.utility.Utils;
 import com.hamilton.view.TypefacedTextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +32,7 @@ import retrofit2.Response;
 
 
 public class PropertiesFragment extends Fragment {
+
 
     @BindView(R.id.txt_total)
     TypefacedTextView txtTotal;
@@ -105,5 +106,14 @@ public class PropertiesFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+
+    public void setDatumList(List<PropertiesList.Datum> datumList) {
+        if (mAdapter != null) {
+            mAdapter.data = (ArrayList<PropertiesList.Datum>) datumList;
+            txtTotal.setText(datumList.size() + getString(R.string.str_properties));
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }

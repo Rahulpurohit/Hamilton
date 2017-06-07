@@ -2,8 +2,10 @@ package com.hamilton;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -199,6 +201,11 @@ public class SearchFilterActivity extends AppCompatActivity {
                     if (arrProperty.size() == 0) {
                         Toast.makeText(SearchFilterActivity.this, "No Data Found... Try Again", Toast.LENGTH_LONG).show();
                     } else {
+                        Intent intent = new Intent();
+                        intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) arrProperty);
+                        setResult(RESULT_OK, intent);
+                        finish();
+
 
                     }
                     // Redirect to Home Fragment
