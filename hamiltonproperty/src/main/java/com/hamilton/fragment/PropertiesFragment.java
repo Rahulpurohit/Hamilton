@@ -42,6 +42,9 @@ public class PropertiesFragment extends Fragment {
     RecyclerView recyclerProperty;
 
     PropertyAdapter mAdapter;
+    boolean isVisibleToUser;
+    boolean isSearched = false;
+    ArrayList<PropertiesList.Datum> arrProperties = new ArrayList<>();
     private Dialog mDialog;
 
     @Override
@@ -79,9 +82,8 @@ public class PropertiesFragment extends Fragment {
                 mDialog.dismiss();
                 if (response.isSuccessful()) {
                     final PropertiesList body = response.body();
-                    txtTotal.setText(body.getData().size() + getString(R.string.str_properties));
-                    mAdapter.data = (ArrayList<PropertiesList.Datum>) body.getData();
-                    mAdapter.notifyDataSetChanged();
+                    arrProperties = (ArrayList<PropertiesList.Datum>) body.getData();
+                    updateDataInList(arrProperties);
                 } else {
                     final String errorResponse = Utils.convertStreamToString(response.errorBody().byteStream());
                     BaseError.ErrorType errorType = BaseError.ErrorType.fromErrorCode(response.code());
@@ -103,6 +105,12 @@ public class PropertiesFragment extends Fragment {
 
     }
 
+    private void updateDataInList(ArrayList<PropertiesList.Datum> arr) {
+        txtTotal.setText(arr.size() + getString(R.string.str_properties));
+        mAdapter.data = arr;
+        mAdapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -111,9 +119,30 @@ public class PropertiesFragment extends Fragment {
 
     public void setDatumList(List<PropertiesList.Datum> datumList) {
         if (mAdapter != null) {
-            mAdapter.data = (ArrayList<PropertiesList.Datum>) datumList;
-            txtTotal.setText(datumList.size() + getString(R.string.str_properties));
-            mAdapter.notifyDataSetChanged();
+            updateDataInList((ArrayList<PropertiesList.Datum>) datumList);
+            isSearched = true;
         }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (getActivity() != null) {
+            if (isVisibleToUser) {
+                if (!isSearched) {
+                    updateDataInList(arrProperties);
+                }
+            } else {
+                isSearched = false;
+            }
+        }
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isSearched = false;
     }
 }
