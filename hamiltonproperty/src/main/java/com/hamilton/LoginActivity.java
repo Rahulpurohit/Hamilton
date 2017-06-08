@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void callHomeScreen() {
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-        intent.putExtra(Constants.KEY_PAGER_LOC, 3);
+        intent.putExtra(Constants.KEY_PAGER_LOC, getIntent().getIntExtra("fromtab", 0));
         startActivity(intent);
         finish();
 

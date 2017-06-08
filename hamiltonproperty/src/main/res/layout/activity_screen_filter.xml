@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -80,16 +79,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.hamilton.view.TwoHintEditText
-                android:id="@+id/txt_filter_price_range"
+            <RelativeLayout
+                android:id="@+id/rl_filter_price_range"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                app:left_hint="@string/str_price_range"
-                app:right_hint="@string/str_any">
+                android:clickable="true">
 
-            </com.hamilton.view.TwoHintEditText>
+                <com.hamilton.view.TypefacedTextView
+                    style="@style/style_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:text="@string/str_price_range"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+                <com.hamilton.view.TypefacedTextView
+                    android:id="@+id/txt_filter_price_range"
+                    style="@style/style_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:text="@string/str_any"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -98,17 +118,37 @@
                 android:layout_marginRight="20dp"
                 android:background="@color/colorHeader" />
 
-            <com.hamilton.view.TwoHintEditText
-                android:id="@+id/txt_filter_property_type"
+            <RelativeLayout
+                android:id="@+id/rl_filter_property_type"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:focusable="false"
-                app:left_hint="@string/str_property_type"
-                app:right_hint="@string/str_any">
+                android:clickable="true">
 
-            </com.hamilton.view.TwoHintEditText>
+                <com.hamilton.view.TypefacedTextView
+                    style="@style/style_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:text="@string/str_property_type"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+                <com.hamilton.view.TypefacedTextView
+                    android:id="@+id/txt_filter_property_type"
+                    style="@style/style_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:text="@string/str_any"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"

@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -36,12 +37,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by Rahul Purohit on 6/3/2017.
- */
-
 public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHolder> {
     public ArrayList<PropertiesList.Datum> data = new ArrayList<>();
+    boolean isShortList;
+    TextView txtTotal;
+
+    public PropertyAdapter(boolean isShortList) {
+        this.isShortList = isShortList;
+    }
+
+    public PropertyAdapter(boolean isShortList, TextView txtTotal) {
+        this.isShortList = isShortList;
+        this.txtTotal = txtTotal;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -102,8 +110,21 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
                         Log.e("res body :- ", "" + response.body());
                         if (response.isSuccessful()) {
                             data.get(holder.getAdapterPosition()).setIslike(!datum.getIslike());
-                            notifyItemChanged(holder.getAdapterPosition());
-                            animation.cancel();
+                            if (isShortList) {
+                                if (!data.get(holder.getAdapterPosition()).getIslike()) {
+                                    try {
+                                        txtTotal.setText((data.size() - 1) + txtTotal.getContext().getString(R.string.str_properties));
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                    data.remove(holder.getAdapterPosition());
+                                    notifyItemRemoved(holder.getAdapterPosition());
+                                    animation.cancel();
+                                }
+                            } else {
+                                notifyItemChanged(holder.getAdapterPosition());
+                                animation.cancel();
+                            }
                         } else {
                             final String errorResponse = Utils.convertStreamToString(response.errorBody().byteStream());
                             BaseError.ErrorType errorType = BaseError.ErrorType.fromErrorCode(response.code());
@@ -167,6 +188,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
         ImageView imgUserLike;
 
         View mClickView;
+
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
