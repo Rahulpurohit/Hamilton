@@ -77,4 +77,5 @@
     <string name="symbol_currency">$</string>
     <string name="str_property_size">Property Size</string>
     <string name="symbol_size">&#160;m\u00B2</string>
+    <string name="str_near_by_suburbs">Near by suburbs</string>
 </resources>

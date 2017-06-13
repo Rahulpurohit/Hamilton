@@ -407,5 +407,6 @@ public class SearchFilterActivity extends AppCompatActivity {
 
     public void clearSearch(View view) {
         txt_search.setText("");
+        Utils.hideSoftKeyboard(SearchFilterActivity.this);
     }
 }

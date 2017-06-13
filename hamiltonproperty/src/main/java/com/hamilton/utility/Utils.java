@@ -17,6 +17,7 @@ import android.text.style.UnderlineSpan;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -190,6 +191,15 @@ public class Utils {
             return true;
         }
         return false;
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity
+                .getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (null != activity.getCurrentFocus()) {
+            inputMethodManager.hideSoftInputFromWindow(activity
+                    .getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
 
