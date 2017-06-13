@@ -72,4 +72,9 @@
     <string name="str_appointment">Appointment</string>
     <string name="str_request_your_appointment">Request Your Appointment</string>
     <string name="str_have_to_login"><![CDATA[You have to <font color=\'#FFB900\'><u>login</u></font> to use this feature]]></string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_hint_search_suburbs">Search suburbs</string>
+    <string name="symbol_currency">$</string>
+    <string name="str_property_size">Property Size</string>
+    <string name="symbol_size">&#160;m\u00B2</string>
 </resources>

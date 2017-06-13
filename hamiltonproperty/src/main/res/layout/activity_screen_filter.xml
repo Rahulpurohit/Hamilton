@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,6 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingBottom="15dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -17,14 +20,30 @@
             android:id="@+id/txt_search"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="@drawable/search_inputfill_2"
+            android:layout_weight="1"
+            android:background="@drawable/search_inputfill"
             android:drawableLeft="@drawable/icon_search_b"
             android:drawablePadding="5dp"
-            android:hint="@string/str_hint_search"
+            android:hint="@string/str_hint_search_suburbs"
             android:imeOptions="actionSearch"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:singleLine="true" />
+
+        <com.hamilton.view.TypefacedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:minWidth="60dp"
+            android:onClick="clearSearch"
+            android:padding="7dp"
+            android:text="@string/str_cancel"
+            android:textColor="@color/white_60"
+            android:textSize="15dp"
+            app:typeface="@string/font_bold" />
 
     </LinearLayout>
 
@@ -139,6 +158,45 @@
 
                 <com.hamilton.view.TypefacedTextView
                     android:id="@+id/txt_filter_property_type"
+                    style="@style/style_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:text="@string/str_any"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorHeader" />
+
+            <RelativeLayout
+                android:id="@+id/rl_filter_property_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:clickable="true">
+
+                <com.hamilton.view.TypefacedTextView
+                    style="@style/style_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:text="@string/str_property_size"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+                <com.hamilton.view.TypefacedTextView
+                    android:id="@+id/txt_filter_property_size"
                     style="@style/style_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

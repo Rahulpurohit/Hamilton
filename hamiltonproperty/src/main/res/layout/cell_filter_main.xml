@@ -16,6 +16,7 @@
         android:textColor="@color/black"
         android:textSize="16dp" />
 
+
     <RadioGroup
         android:id="@+id/radioCellFiltergroup"
         android:layout_width="match_parent"
@@ -23,8 +24,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="6">
         <!--<RadioButton
             style="@style/style_radio_button"
             android:layout_width="0dp"
