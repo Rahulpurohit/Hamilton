@@ -46,6 +46,8 @@ public class SearchFilterActivity extends AppCompatActivity {
     TextView txtFilterPriceRange;
     @BindView(R.id.txt_filter_property_type)
     TextView txtFilterPropertyType;
+    @BindView(R.id.txt_filter_property_size)
+    TextView getTxtFilterPropertySize;
     @BindView(R.id.llContent)
     LinearLayout llContent;
     @BindView(R.id.txt_search)
@@ -58,17 +60,64 @@ public class SearchFilterActivity extends AppCompatActivity {
 
     @OnClick(R.id.rl_filter_price_range)
     public void selectPriceRange() {
-        List<String> actualPriceArray = searchFilter.getData().getPrices();
+        List<String> actualPriceArray = new ArrayList<>();//searchFilter.getData().getPrices();
+        addPriceArray(actualPriceArray);
+
         ArrayList<String> arrPriceRange = new ArrayList<>();
         for (int k = 0; actualPriceArray != null && k < actualPriceArray.size() - 1; k++) {
             if (TextUtils.isEmpty(actualPriceArray.get(k))) {
                 arrPriceRange.add(getString(R.string.str_any));
             } else {
-                arrPriceRange.add(actualPriceArray.get(k) + "-" + actualPriceArray.get(k + 1));
+                if (k == 1)
+                    arrPriceRange.add(getString(R.string.symbol_currency) + actualPriceArray.get(k) + "-" + getString(R.string.symbol_currency) + actualPriceArray.get(k + 1));
+                else
+                    arrPriceRange.add(getString(R.string.symbol_currency) + (Integer.parseInt(actualPriceArray.get(k)) + 1) + "-" + getString(R.string.symbol_currency) + actualPriceArray.get(k + 1));
             }
         }
         showDialogAlert(arrPriceRange, 0);
 
+    }
+
+    @OnClick(R.id.rl_filter_property_size)
+    public void selectPropertySize() {
+        List<String> actualPriceArray = new ArrayList<>();//searchFilter.getData().getPrices();
+        addPropertySizeArray(actualPriceArray);
+
+        ArrayList<String> arrPriceRange = new ArrayList<>();
+        for (int k = 0; actualPriceArray != null && k < actualPriceArray.size() - 1; k++) {
+            if (TextUtils.isEmpty(actualPriceArray.get(k))) {
+                arrPriceRange.add(getString(R.string.str_any));
+            } else {
+                if (k == 1)
+                    arrPriceRange.add(actualPriceArray.get(k) + "-" + actualPriceArray.get(k + 1) + getString(R.string.symbol_size));
+                else
+                    arrPriceRange.add((Integer.parseInt(actualPriceArray.get(k)) + 1) + "-" + actualPriceArray.get(k + 1) + getString(R.string.symbol_size));
+            }
+        }
+        showDialogAlert(arrPriceRange, 2);
+
+    }
+
+    private void addPriceArray(List<String> actualPriceArray) {
+        for (int i = 0; i < 601; i++) {
+            if (i == 0)
+                actualPriceArray.add("");
+            else if (i == 600)
+                actualPriceArray.add((i * 25000) + "+");
+            else
+                actualPriceArray.add("" + (i * 25000));
+        }
+    }
+
+    private void addPropertySizeArray(List<String> actualPriceArray) {
+        for (int i = 0; i < 51; i++) {
+            if (i == 0)
+                actualPriceArray.add("");
+            else if (i == 50)
+                actualPriceArray.add((i * 100) + "+");
+            else
+                actualPriceArray.add("" + (i * 100));
+        }
     }
 
     @OnClick(R.id.rl_filter_property_type)
@@ -83,6 +132,7 @@ public class SearchFilterActivity extends AppCompatActivity {
         for (int i = 0; i < llContent.getChildCount(); i++) {
             View view = llContent.getChildAt(i);
             RadioGroup rdGrp = (RadioGroup) view.findViewById(R.id.radioCellFiltergroup);
+            rdGrp.setWeightSum(6);
             TextView lblCellFilterTitle = (TextView) view.findViewById(R.id.lblCellFilterTitle);
             int radioButtonID = rdGrp.getCheckedRadioButtonId();
             RadioButton radioButton = (RadioButton) rdGrp.findViewById(radioButtonID);
@@ -92,16 +142,16 @@ public class SearchFilterActivity extends AppCompatActivity {
             keywords = TextUtils.isEmpty(txt_search.getText()) ? "" : txt_search.getText().toString();
             if (txtFilterPriceRange.getText() != null && txtFilterPriceRange.getText().toString().contains("-")) {
                 String[] arrPrice = txtFilterPriceRange.getText().toString().split("-");
-                minprice = arrPrice[0];
-                maxprice = arrPrice[1];
+                minprice = arrPrice[0].replaceAll(getString(R.string.symbol_currency), "");
+                maxprice = arrPrice[1].replaceAll(getString(R.string.symbol_currency), "");
             } else {
                 minprice = "";
                 maxprice = "";
 
             }
 
-            if (txtFilterPropertyType.getText() != null) {
-                landsize = txtFilterPropertyType.getText().toString();
+            if (getTxtFilterPropertySize.getText() != null) {
+                landsize = getTxtFilterPropertySize.getText().toString().equalsIgnoreCase(getString(R.string.str_any)) ? "" : getTxtFilterPropertySize.getText().toString().replaceAll(getString(R.string.symbol_size), "");
             }
 
             type = (buttonOne.isChecked() ? "buy" : "rent");
@@ -119,9 +169,9 @@ public class SearchFilterActivity extends AppCompatActivity {
                 case "Car Parks":
                     car = selectedtext;
                     break;
-                case "Land Size":
+                /*case "Land Size":
                     landsize = selectedtext;
-                    break;
+                    break;*/
                 case "Toilets":
                     toilets = selectedtext;
                     break;
@@ -237,11 +287,38 @@ public class SearchFilterActivity extends AppCompatActivity {
     private void setFilterLayout() {
         llContent.removeAllViews();
 
-        addCellData(searchFilter.getData().getBadrooms(), R.string.str_bedrooms);
+        ArrayList<String> arrayHardCoded = new ArrayList<>();
+        for (int k = 0; k < 6; k++) {
+            if (k == 0)
+                arrayHardCoded.add("");
+            else if (k == 5)
+                arrayHardCoded.add(k + "+");
+            else
+                arrayHardCoded.add("" + k);
+        }
+
+        ArrayList<String> arrayHardCodedLandSize = new ArrayList<>();
+        for (int k = 0; k < 6; k++) {
+            if (k == 0)
+                arrayHardCodedLandSize.add("");
+            else if (k == 5)
+                arrayHardCodedLandSize.add((k * 100) + "+");
+            else
+                arrayHardCodedLandSize.add("" + (k * 100));
+        }
+
+
+        addCellData(arrayHardCoded, R.string.str_bedrooms);
+        addCellData(arrayHardCoded, R.string.str_bathrooms);
+        addCellData(arrayHardCoded, R.string.str_car_parks);
+        //addCellData(arrayHardCodedLandSize, R.string.str_land_size);
+        addCellData(arrayHardCoded, R.string.str_toilets);
+
+        /*addCellData(searchFilter.getData().getBadrooms(), R.string.str_bedrooms);
         addCellData(searchFilter.getData().getBathrooms(), R.string.str_bathrooms);
         addCellData(searchFilter.getData().getCars(), R.string.str_car_parks);
         addCellData(searchFilter.getData().getLandsize(), R.string.str_land_size);
-        addCellData(searchFilter.getData().getToilet(), R.string.str_toilets);
+        addCellData(searchFilter.getData().getToilet(), R.string.str_toilets);*/
 
     }
 
@@ -261,9 +338,9 @@ public class SearchFilterActivity extends AppCompatActivity {
     private void addRadioView(RadioGroup radioGroup, List<String> arr) {
         View radioView;
         RadioButton rBtn;
-        int size = (arr.size() > 5 ? 5 : arr.size());
+        int size = (arr.size() > 6 ? 6 : arr.size());
         for (int i = 0; i < size; i++) {
-            radioView = LayoutInflater.from(this).inflate(R.layout.cell_filter_sub, null);
+            radioView = LayoutInflater.from(this).inflate(R.layout.cell_filter_sub, radioGroup, false);
             rBtn = (RadioButton) radioView;
             rBtn.setTag(i);
             rBtn.setText(TextUtils.isEmpty(arr.get(i)) ? getString(R.string.str_any) : arr.get(i));
@@ -271,13 +348,16 @@ public class SearchFilterActivity extends AppCompatActivity {
                 rBtn.setBackgroundResource(R.drawable.bg_filter_first);
             } else if (i == size - 1) {
                 rBtn.setChecked(false);
-                if (arr.size() > 5)
+                if (arr.size() > 6)
                     rBtn.append("+");
                 rBtn.setBackgroundResource(R.drawable.bg_filter_last);
             } else {
                 rBtn.setBackgroundResource(R.drawable.bg_filter_midle);
             }
             radioGroup.addView(radioView);
+/*
+            radioGroup.addView(radioView, new LinearLayout.LayoutParams(0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 1));*/
         }
     }
 
@@ -314,6 +394,10 @@ public class SearchFilterActivity extends AppCompatActivity {
                             case 1:
                                 txtFilterPropertyType.setText("" + strName);
                                 break;
+                            case 2:
+                                getTxtFilterPropertySize.setText("" + strName);
+                                break;
+
                         }
                     }
                 });
@@ -321,4 +405,7 @@ public class SearchFilterActivity extends AppCompatActivity {
     }
 
 
+    public void clearSearch(View view) {
+        txt_search.setText("");
+    }
 }
