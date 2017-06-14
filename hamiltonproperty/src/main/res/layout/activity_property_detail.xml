@@ -42,7 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:onClick="callLogout"
             app:srcCompat="@drawable/ic_open_browser" />
     </RelativeLayout>
 
@@ -208,10 +207,13 @@
             android:weightSum="3">
 
             <LinearLayout
+                android:id="@+id/llCall"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
-                android:gravity="center">
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="callToProperty">
 
                 <TextView
                     android:id="@+id/btn_call"
@@ -249,7 +251,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
-                android:gravity="center">
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="mailToProperty">
 
                 <TextView
                     android:id="@+id/btn_email"
@@ -258,8 +262,6 @@
                     android:layout_gravity="center"
                     android:drawableLeft="@drawable/email"
                     android:drawablePadding="5dp"
-                    android:gravity=""
-
                     android:text="Mail"
                     android:textColor="@color/white" />
             </LinearLayout>

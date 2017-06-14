@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hamilton.HomeActivity;
 import com.hamilton.R;
@@ -209,5 +210,20 @@ public class Utils {
         MyApplication.getApplication().setUser(null);
         act.startActivity(new Intent(act, HomeActivity.class));
         act.finish();
+    }
+
+    public static void shareOnApps(Activity act, String subject, String message) {
+        try {
+
+            Intent waIntent = new Intent(Intent.ACTION_SEND);
+            waIntent.setType("text/plain");
+            waIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            waIntent.putExtra(Intent.EXTRA_TEXT, message);
+            act.startActivity(Intent.createChooser(waIntent, "Share with"));
+
+        } catch (Exception e) {
+            Toast.makeText(act, "Error:" + e.getMessage(), Toast.LENGTH_SHORT)
+                    .show();
+        }
     }
 }
