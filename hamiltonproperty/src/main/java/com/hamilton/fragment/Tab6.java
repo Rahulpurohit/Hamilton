@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hamilton.HomeActivity;
 import com.hamilton.LoginActivity;
 import com.hamilton.R;
 import com.hamilton.application.MyApplication;
+import com.hamilton.utility.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,9 +36,7 @@ public class Tab6 extends Fragment {
 
     @OnClick(R.id.lblAccountLogout)
     public void LogoutButtonClicked() {
-        MyApplication.getApplication().setUser(null);
-        startActivity(new Intent(getActivity(), HomeActivity.class));
-        getActivity().finish();
+        Utils.performLogout(getActivity());
     }
 
     @OnClick(R.id.btnLoginUser)

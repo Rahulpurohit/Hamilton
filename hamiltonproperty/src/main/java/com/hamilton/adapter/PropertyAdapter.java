@@ -80,7 +80,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
 
 
         holder.txtOfferOver.setText(Html.fromHtml("Offer Over <b>" + datum.getPrice() + "</b>"));
-        holder.txtAddress.setText(datum.getPropertyName());
+        holder.txtAddress.setText(datum.getAddress().getAddress());
+        holder.txtPropertyName.setText(datum.getPropertyName());
         holder.btnNew.setText(datum.getHomeTypes());
 
         holder.imgUserLike.setImageResource(datum.getIslike() ? R.drawable.like : R.drawable.icon_favourite_b);
@@ -113,7 +114,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
                             if (isShortList) {
                                 if (!data.get(holder.getAdapterPosition()).getIslike()) {
                                     try {
-                                        txtTotal.setText((data.size() - 1) + txtTotal.getContext().getString(R.string.str_properties));
+                                        txtTotal.setText((data.size() - 1) + " of " + (data.size() - 1) + txtTotal.getContext().getString(R.string.str_properties));
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -182,6 +183,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
         TypefacedTextView txtOfferOver;
         @BindView(R.id.txt_address)
         TypefacedTextView txtAddress;
+        @BindView(R.id.txt_property_name)
+        TypefacedTextView txtPropertyName;
         @BindView(R.id.imageView3)
         Button imageView3;
         @BindView(R.id.img_userLike)

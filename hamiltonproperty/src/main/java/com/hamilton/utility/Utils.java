@@ -22,8 +22,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hamilton.HomeActivity;
 import com.hamilton.R;
 import com.hamilton.WebviewActivity;
+import com.hamilton.application.MyApplication;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -203,4 +205,9 @@ public class Utils {
     }
 
 
+    public static void performLogout(Activity act) {
+        MyApplication.getApplication().setUser(null);
+        act.startActivity(new Intent(act, HomeActivity.class));
+        act.finish();
+    }
 }

@@ -59,6 +59,9 @@ public class PropertyDetailActivity extends AppCompatActivity {
     TypefacedTextView txtOfferOver;
     @BindView(R.id.txt_address)
     TypefacedTextView txtAddress;
+    @BindView(R.id.txt_property_name)
+    TypefacedTextView txtPropertyName;
+
     @BindView(R.id.txt_details)
     TypefacedTextView txtDetails;
     @BindView(R.id.btn_call)
@@ -83,7 +86,8 @@ public class PropertyDetailActivity extends AppCompatActivity {
         txtCarParking.setText(datum.getNoOfCars());
 
         txtOfferOver.setText(Html.fromHtml("Offer Over <b>" + datum.getPrice() + "</b>"));
-        txtAddress.setText(datum.getPropertyName());
+        txtPropertyName.setText(datum.getPropertyName());
+        txtAddress.setText(datum.getAddress().getAddress());
 
         imgOpenBrowser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,10 +163,14 @@ public class PropertyDetailActivity extends AppCompatActivity {
         btnAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(PropertyDetailActivity.this,AppointmentActivity.class);
-                i.putExtra("PROPERTY_DATA",datum);
+                Intent i = new Intent(PropertyDetailActivity.this, AppointmentActivity.class);
+                i.putExtra("PROPERTY_DATA", datum);
                 startActivity(i);
             }
         });
+    }
+
+    public void callLogout(View view) {
+        Utils.performLogout(PropertyDetailActivity.this);
     }
 }

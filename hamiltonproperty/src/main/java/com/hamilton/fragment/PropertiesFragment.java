@@ -117,7 +117,7 @@ public class PropertiesFragment extends Fragment {
     }
 
     private void updateDataInList(ArrayList<PropertiesList.Datum> arr) {
-        txtTotal.setText(arr.size() + getString(R.string.str_properties));
+        txtTotal.setText(arr.size() + " of " + arr.size() + getString(R.string.str_properties));
         mAdapter.data = arr;
         mAdapter.notifyDataSetChanged();
     }
