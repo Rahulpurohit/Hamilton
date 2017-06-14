@@ -1,28 +1,13 @@
 apply plugin: 'com.android.application'
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-    }
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-    }
-}
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.hamilton"
         multiDexEnabled = true
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion 15
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -39,9 +24,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
-
-
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:multidex:1.0.1'
@@ -53,6 +35,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
+    compile 'com.github.mabbas007:TagsEditText:v0.95'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
 }

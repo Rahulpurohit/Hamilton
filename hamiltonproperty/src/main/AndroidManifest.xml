@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hamilton">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:windowSoftInputMode="adjustNothing">
+        android:windowSoftInputMode="adjustNothing"
+        tools:overrideLibrary="mabbas007.tagsedittext">
         <activity
             android:name=".SplashActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
@@ -40,7 +43,7 @@
         <activity android:name=".ApiResponseActivity" />
         <activity
             android:name=".SearchFilterActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".AgreementsActivity" />
         <activity android:name=".WebviewActivity" />
         <activity android:name=".PropertyDetailActivity" />

@@ -98,6 +98,14 @@ public class MeFragment extends Fragment implements TabLayout.OnTabSelectedListe
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
 
+        if (isVisibleToUser && getActivity() != null) {
+            if (MyApplication.getUserId() == -1 && getActivity() != null) {
+                startActivity(new Intent(getActivity(), LoginActivity.class)
+                        .putExtra("fromtab", 3));
+                getActivity().finish();
+            }
+        }
+
     }
 
     @Override

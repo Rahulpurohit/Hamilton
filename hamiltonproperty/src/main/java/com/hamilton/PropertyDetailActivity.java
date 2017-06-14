@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.Html;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -59,6 +58,9 @@ public class PropertyDetailActivity extends AppCompatActivity {
     TypefacedTextView txtOfferOver;
     @BindView(R.id.txt_address)
     TypefacedTextView txtAddress;
+    @BindView(R.id.txt_property_name)
+    TypefacedTextView txtPropertyName;
+
     @BindView(R.id.txt_details)
     TypefacedTextView txtDetails;
     @BindView(R.id.btn_call)
@@ -83,16 +85,13 @@ public class PropertyDetailActivity extends AppCompatActivity {
         txtCarParking.setText(datum.getNoOfCars());
 
         txtOfferOver.setText(Html.fromHtml("Offer Over <b>" + datum.getPrice() + "</b>"));
-        txtAddress.setText(datum.getPropertyName());
+        txtPropertyName.setText(datum.getPropertyName());
+        txtAddress.setText(datum.getAddress().getAddress());
 
         imgOpenBrowser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(datum.getPropertyUrl()) && datum.getPropertyUrl().contains("http://")) {
-                    Uri uri = Uri.parse(datum.getPropertyUrl()); // missing 'http://' will cause crashed
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                }
+                Utils.shareOnApps(PropertyDetailActivity.this, datum.getPropertyName(), datum.getAddress().getAddress());
             }
         });
 
@@ -159,10 +158,23 @@ public class PropertyDetailActivity extends AppCompatActivity {
         btnAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(PropertyDetailActivity.this,AppointmentActivity.class);
-                i.putExtra("PROPERTY_DATA",datum);
+                Intent i = new Intent(PropertyDetailActivity.this, AppointmentActivity.class);
+                i.putExtra("PROPERTY_DATA", datum);
                 startActivity(i);
             }
         });
+    }
+
+    public void callToProperty(View view) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "9876543210"));
+        startActivity(intent);
+    }
+
+    public void mailToProperty(View view) {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "abc@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, datum.getPropertyName());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, datum.getAddress().getAddress());
+        startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 }

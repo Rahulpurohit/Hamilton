@@ -5,7 +5,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="str_search">Search</string>
-    <string name="str_properties">Properties</string>
+    <string name="str_properties">&#160;Properties</string>
     <string name="str_shortlist">Shortlist</string>
     <string name="str_me">Me</string>
     <string name="str_email">email</string>
@@ -78,4 +78,5 @@
     <string name="str_property_size">Property Size</string>
     <string name="symbol_size">&#160;m\u00B2</string>
     <string name="str_near_by_suburbs">Near by suburbs</string>
+    <string name="str_keywords_sep_comma">Keywords (Seperated by comma)</string>
 </resources>
