@@ -7,12 +7,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +31,8 @@ import com.hamilton.utility.Utils;
 import com.hamilton.view.TypefacedTextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,13 +48,14 @@ public class ShortlistFragment extends Fragment {
     @BindView(R.id.txt_total)
     TypefacedTextView txtTotal;
     @BindView(R.id.txt_sort)
-    TypefacedTextView txtSort;
+    Button txtSort;
     @BindView(R.id.recycler_property)
     RecyclerView recyclerProperty;
     @BindView(R.id.txt_login)
     TextView txtLogin;
     PropertyAdapter mAdapter;
     private Dialog mDialog;
+    private ArrayList<PropertiesList.Datum> arrProperties;
 
     public ShortlistFragment() {
     }
@@ -111,7 +118,61 @@ public class ShortlistFragment extends Fragment {
                     final PropertiesList body = response.body();
                     if (body.getData() != null && body.getData().size() > 0) {
                         txtTotal.setText(body.getData().size() + getString(R.string.str_properties));
-                        mAdapter.data = (ArrayList<PropertiesList.Datum>) body.getData();
+                        mAdapter.data = arrProperties =  (ArrayList<PropertiesList.Datum>) body.getData();
+
+                        txtSort.setVisibility(View.VISIBLE);
+                        txtSort.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //Creating the instance of PopupMenu
+                                PopupMenu popup = new PopupMenu(getActivity(), v);
+                                //Inflating the Popup using xml file
+                                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+
+                                //registering popup with OnMenuItemClickListener
+                                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                                    public boolean onMenuItemClick(MenuItem item) {
+
+                                        ArrayList<PropertiesList.Datum> listSort = arrProperties;
+                                        Collections.sort(listSort, new Comparator<PropertiesList.Datum>() {
+                                            @Override
+                                            public int compare(PropertiesList.Datum o1, PropertiesList.Datum o2) {
+                                                if (TextUtils.isEmpty(o1.getPrice())) {
+                                                    o1.setPrice("0");
+                                                }
+                                                if (TextUtils.isEmpty(o2.getPrice())) {
+                                                    o2.setPrice("0");
+                                                }
+                                                float aFloat = Float.parseFloat(o1.getPrice());
+                                                float bFloat = Float.parseFloat(o2.getPrice());
+
+                                                return Float.compare(aFloat, bFloat);
+                                            }
+                                        });
+
+
+                                        switch (item.getItemId()) {
+                                            case R.id.low_high:
+                                                mAdapter.data = listSort;
+                                                mAdapter.notifyDataSetChanged();
+                                                break;
+                                            case R.id.high_low:
+                                                Collections.reverse(listSort);
+                                                mAdapter.data = listSort;
+                                                mAdapter.notifyDataSetChanged();
+                                                break;
+                                            default:
+                                                mAdapter.data = arrProperties;
+                                                mAdapter.notifyDataSetChanged();
+                                        }
+
+                                        return true;
+                                    }
+                                });
+
+                                popup.show();//showing popup menu
+                            }
+                        });
                         mAdapter.notifyDataSetChanged();
                     } else {
                         txtLogin.setVisibility(MyApplication.getUserId() == -1 ? View.VISIBLE : View.GONE);

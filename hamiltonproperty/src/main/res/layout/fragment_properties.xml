@@ -22,17 +22,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:padding="10dp"
             android:textColor="@color/grey"
             tools:text="20 of 1400 properties" />
 
-        <com.hamilton.view.TypefacedTextView
+        <com.hamilton.view.TypefacedButton
             android:id="@+id/txt_sort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:padding="10dp"
+            android:text="Sort"
+
             android:textColor="@color/grey"
-            android:visibility="invisible"
-            tools:text="Sort" />
+            android:layout_alignParentRight="true"
+            android:visibility="visible" />
     </RelativeLayout>
 
     <FrameLayout
