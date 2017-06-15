@@ -158,7 +158,7 @@ public class SearchFilterActivity extends AppCompatActivity {
                 landsize = getTxtFilterPropertySize.getText().toString().equalsIgnoreCase(getString(R.string.str_any)) ? "" : getTxtFilterPropertySize.getText().toString().replaceAll(getString(R.string.symbol_size), "");
             }
 
-            bordering = cb_near_by_suburbs.isChecked() ? "10" : "";
+            bordering = cb_near_by_suburbs.isChecked() ? getString(R.string.value_near_by_suburbs) : "";
 
             type = (buttonOne.isChecked() ? "buy" : "rent");
 
