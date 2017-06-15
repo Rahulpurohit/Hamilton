@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -52,6 +53,9 @@ public class SearchFilterActivity extends AppCompatActivity {
     LinearLayout llContent;
     @BindView(R.id.txt_search)
     EditText txt_search;
+    @BindView(R.id.cb_near_by_suburbs)
+    CheckBox cb_near_by_suburbs;
+
     Dialog mDialog;
     SearchFilter searchFilter;
     String keywords = "", bordering = "", residential = "", alltype = "", minprice = "", maxprice = "", bed = "", bath = "", car = "", toilets = "", landsize = "", type = "rent";
@@ -154,6 +158,8 @@ public class SearchFilterActivity extends AppCompatActivity {
                 landsize = getTxtFilterPropertySize.getText().toString().equalsIgnoreCase(getString(R.string.str_any)) ? "" : getTxtFilterPropertySize.getText().toString().replaceAll(getString(R.string.symbol_size), "");
             }
 
+            bordering = cb_near_by_suburbs.isChecked() ? "10" : "";
+
             type = (buttonOne.isChecked() ? "buy" : "rent");
 
             alltype = txtFilterPropertyType.getText().toString().equalsIgnoreCase(getString(R.string.str_any)) ? "" : txtFilterPropertyType.getText().toString();
@@ -246,7 +252,7 @@ public class SearchFilterActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertyFilterList(Constants.key, keywords, bordering, residential, alltype, minprice, maxprice, bed, bath, car, toilets, landsize, type);
+        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertyFilterList(Constants.key, keywords, bordering, residential, removeAny(alltype), removeAny(minprice), removeAny(maxprice), removeAny(bed), removeAny(bath), removeAny(car), removeAny(toilets), removeAny(landsize), removeAny(type));
         userCall.enqueue(new Callback<PropertiesList>() {
             @Override
             public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
@@ -408,5 +414,9 @@ public class SearchFilterActivity extends AppCompatActivity {
     public void clearSearch(View view) {
         txt_search.setText("");
         Utils.hideSoftKeyboard(SearchFilterActivity.this);
+    }
+
+    private String removeAny(String strAny) {
+        return TextUtils.isEmpty(strAny) ? "" : strAny.replaceAll(getString(R.string.str_any), "");
     }
 }
