@@ -79,4 +79,7 @@
     <string name="symbol_size">&#160;m\u00B2</string>
     <string name="str_near_by_suburbs">Near by suburbs</string>
     <string name="str_keywords_sep_comma">Keywords (Seperated by comma)</string>
+    <string name="low_to_high">Low To high</string>
+    <string name="high_to_low">High To Low</string>
+    <string name="_def">Default</string>
 </resources>
