@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -52,9 +53,12 @@ public class SearchFilterActivity extends AppCompatActivity {
     LinearLayout llContent;
     @BindView(R.id.txt_search)
     EditText txt_search;
+    @BindView(R.id.cb_near_by_suburbs)
+    CheckBox cb_near_by_suburbs;
+
     Dialog mDialog;
     SearchFilter searchFilter;
-    String keywords = "", bordering = "", residential = "", alltype = "", minprice = "", maxprice = "", bed = "", bath = "", car = "", toilets = "", landsize = "", type = "rent";
+    String keywords = "", bordering = "", residential = "", alltype = "", minprice = "", maxprice = "", bed = "", bath = "", car = "", toilets = "", landsize = "", landsizemax = "", type = "rent";
     List<PropertiesList.Datum> arrProperty = new ArrayList<>();
     RadioButton buttonOne;
 
@@ -142,38 +146,50 @@ public class SearchFilterActivity extends AppCompatActivity {
             keywords = TextUtils.isEmpty(txt_search.getText()) ? "" : txt_search.getText().toString();
             if (txtFilterPriceRange.getText() != null && txtFilterPriceRange.getText().toString().contains("-")) {
                 String[] arrPrice = txtFilterPriceRange.getText().toString().split("-");
-                minprice = arrPrice[0].replaceAll(getString(R.string.symbol_currency), "");
-                maxprice = arrPrice[1].replaceAll(getString(R.string.symbol_currency), "");
+                minprice = arrPrice[0].contains(getString(R.string.symbol_currency)) ? arrPrice[0].substring(1, arrPrice[0].length()) : arrPrice[0];
+                maxprice = arrPrice[1].contains(getString(R.string.symbol_currency)) ? arrPrice[1].substring(1, arrPrice[1].length()) : arrPrice[1];
             } else {
                 minprice = "";
                 maxprice = "";
 
             }
 
-            if (getTxtFilterPropertySize.getText() != null) {
+            /*if (getTxtFilterPropertySize.getText() != null) {
                 landsize = getTxtFilterPropertySize.getText().toString().equalsIgnoreCase(getString(R.string.str_any)) ? "" : getTxtFilterPropertySize.getText().toString().replaceAll(getString(R.string.symbol_size), "");
+            }*/
+
+            if (getTxtFilterPropertySize.getText() != null && getTxtFilterPropertySize.getText().toString().contains("-")) {
+                String[] arrPrice = getTxtFilterPropertySize.getText().toString().replaceAll(getString(R.string.symbol_size), "").split("-");
+                landsize = arrPrice[0].replaceAll(getString(R.string.symbol_currency), "");
+                landsizemax = arrPrice[1].replaceAll(getString(R.string.symbol_currency), "");
+            } else {
+                landsize = "";
+                landsizemax = "";
+
             }
+
+            bordering = cb_near_by_suburbs.isChecked() ? getString(R.string.value_near_by_suburbs) : "";
 
             type = (buttonOne.isChecked() ? "buy" : "rent");
 
             alltype = txtFilterPropertyType.getText().toString().equalsIgnoreCase(getString(R.string.str_any)) ? "" : txtFilterPropertyType.getText().toString();
-
+            alltype = removeAny(alltype);
 
             switch (lblCellFilterTitle.getText().toString()) {
                 case "Bedrooms":
-                    bed = selectedtext;
+                    bed = removeAny(selectedtext);
                     break;
                 case "Bathrooms":
-                    bath = selectedtext;
+                    bath = removeAny(selectedtext);
                     break;
                 case "Car Parks":
-                    car = selectedtext;
+                    car = removeAny(selectedtext);
                     break;
                 /*case "Land Size":
                     landsize = selectedtext;
                     break;*/
                 case "Toilets":
-                    toilets = selectedtext;
+                    toilets = removeAny(selectedtext);
                     break;
                 default:
                     break;
@@ -246,7 +262,7 @@ public class SearchFilterActivity extends AppCompatActivity {
             mDialog.show();
 
         Log.e("getApiData :- ", "" + "getApiData");
-        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertyFilterList(Constants.key, keywords, bordering, residential, alltype, minprice, maxprice, bed, bath, car, toilets, landsize, type);
+        Call<PropertiesList> userCall = MyApplication.getApplication().getClient().getPropertyFilterList(Constants.key, keywords, bordering, residential, removeAny(alltype), removeAny(minprice), removeAny(maxprice), removeAny(bed), removeAny(bath), removeAny(car), removeAny(toilets), removeAny(landsize), removeAny(landsizemax), removeAny(type));
         userCall.enqueue(new Callback<PropertiesList>() {
             @Override
             public void onResponse(Call<PropertiesList> call, Response<PropertiesList> response) {
@@ -408,5 +424,9 @@ public class SearchFilterActivity extends AppCompatActivity {
     public void clearSearch(View view) {
         txt_search.setText("");
         Utils.hideSoftKeyboard(SearchFilterActivity.this);
+    }
+
+    private String removeAny(String strAny) {
+        return TextUtils.isEmpty(strAny) ? "" : strAny.replaceAll(getString(R.string.str_any), "");
     }
 }

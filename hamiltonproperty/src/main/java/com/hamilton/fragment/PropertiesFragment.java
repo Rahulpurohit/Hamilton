@@ -1,6 +1,7 @@
 package com.hamilton.fragment;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,9 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hamilton.R;
+import com.hamilton.SearchFilterActivity;
 import com.hamilton.adapter.PropertyAdapter;
 import com.hamilton.application.MyApplication;
 import com.hamilton.modal.PropertiesList;
@@ -52,6 +55,7 @@ public class PropertiesFragment extends Fragment {
     boolean isVisibleToUser;
     boolean isSearched = false;
     ArrayList<PropertiesList.Datum> arrProperties = new ArrayList<>();
+    boolean isFromSearch;
     private Dialog mDialog;
 
     @Override
@@ -64,6 +68,19 @@ public class PropertiesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+
+        Bundle b = getArguments();
+        if (b != null) {
+            isFromSearch = b.getBoolean("isFromSearch", true);
+        }
+        TextView btn_back = (TextView) view.findViewById(R.id.btn_back);
+        btn_back.setVisibility(isFromSearch ? View.VISIBLE : View.GONE);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SearchFilterActivity.class));
+            }
+        });
 
         mAdapter = new PropertyAdapter(false);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());

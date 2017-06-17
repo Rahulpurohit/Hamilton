@@ -45,6 +45,7 @@ public interface ApiInterface {
             , @Field("car") String car
             , @Field("toilets") String toilets
             , @Field("landsize") String landsize
+            , @Field("landsizemax") String landsizemax
             , @Field("type") String type
     );
 

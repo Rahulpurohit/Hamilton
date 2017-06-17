@@ -23,6 +23,7 @@ import com.hamilton.utility.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class SearchFragment extends Fragment {
@@ -31,6 +32,14 @@ public class SearchFragment extends Fragment {
 
     @BindView(R.id.txt_search)
     public EditText txtSearch;
+
+    @OnClick(R.id.lblSearch)
+    public void searchData() {
+        startActivityForResult(new Intent(getActivity(), SearchFilterActivity.class)
+                .putExtra(Constants.KEY_SEARCH_KEY, TextUtils.isEmpty(txtSearch.getText()) ? "" : txtSearch.getText().toString()), 8888);
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
