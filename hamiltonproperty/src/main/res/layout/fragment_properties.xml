@@ -5,12 +5,37 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.hamilton.view.TypefacedTextView
-        android:id="@+id/txt_header"
+    <RelativeLayout
         style="@style/style_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_properties" />
+        android:layout_height="wrap_content">
+
+        <com.hamilton.view.TypefacedTextView
+            android:id="@+id/txt_header"
+            style="@style/style_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/str_properties" />
+
+        <com.hamilton.view.TypefacedTextView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txt_header"
+            android:layout_alignBottom="@+id/txt_header"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:drawableLeft="@drawable/ic_back"
+            android:gravity="center"
+            android:text="@string/str_back"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,14 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:background="@null"
             android:minHeight="0dp"
             android:minWidth="0dp"
             android:padding="10dp"
-            android:text="Sort"
 
+            android:text="Sort"
             android:textColor="@color/grey"
-            android:layout_alignParentRight="true"
             android:visibility="visible" />
     </RelativeLayout>
 
