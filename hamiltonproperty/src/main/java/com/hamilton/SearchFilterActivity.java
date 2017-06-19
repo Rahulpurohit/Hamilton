@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hamilton.application.MyApplication;
+import com.hamilton.fragment.PropertiesFragment;
 import com.hamilton.modal.PropertiesList;
 import com.hamilton.modal.SearchFilter;
 import com.hamilton.modal.error.BaseError;
@@ -274,10 +275,12 @@ public class SearchFilterActivity extends AppCompatActivity {
                     if (arrProperty.size() == 0) {
                         Toast.makeText(SearchFilterActivity.this, "No Data Found... Try Again", Toast.LENGTH_LONG).show();
                     } else {
+                        PropertiesFragment.isFromSearch = true;
                         Intent intent = new Intent();
                         intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) arrProperty);
                         setResult(RESULT_OK, intent);
                         finish();
+
                     }
                     // Redirect to Home Fragment
                 } else {

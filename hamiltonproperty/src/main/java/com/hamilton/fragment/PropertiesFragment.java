@@ -44,18 +44,18 @@ import retrofit2.Response;
 public class PropertiesFragment extends Fragment {
 
 
+    public static boolean isFromSearch;
     @BindView(R.id.txt_total)
     TypefacedTextView txtTotal;
     @BindView(R.id.txt_sort)
     Button txtSort;
     @BindView(R.id.recycler_property)
     RecyclerView recyclerProperty;
-
     PropertyAdapter mAdapter;
     boolean isVisibleToUser;
     boolean isSearched = false;
     ArrayList<PropertiesList.Datum> arrProperties = new ArrayList<>();
-    boolean isFromSearch;
+    TextView btn_back;
     private Dialog mDialog;
 
     @Override
@@ -68,12 +68,7 @@ public class PropertiesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
-        Bundle b = getArguments();
-        if (b != null) {
-            isFromSearch = b.getBoolean("isFromSearch", true);
-        }
-        TextView btn_back = (TextView) view.findViewById(R.id.btn_back);
+        btn_back = (TextView) view.findViewById(R.id.btn_back);
         btn_back.setVisibility(isFromSearch ? View.VISIBLE : View.GONE);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,6 +216,7 @@ public class PropertiesFragment extends Fragment {
             if (isVisibleToUser) {
                 if (!isSearched) {
                     updateDataInList(arrProperties);
+                    btn_back.setVisibility(isFromSearch ? View.VISIBLE : View.GONE);
                 }
             } else {
                 isSearched = false;
@@ -233,5 +229,6 @@ public class PropertiesFragment extends Fragment {
     public void onPause() {
         super.onPause();
         isSearched = false;
+        isFromSearch = false;
     }
 }
