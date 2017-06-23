@@ -91,6 +91,11 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     private class CustomPagerAdapter extends FragmentPagerAdapter {
 
         public CustomPagerAdapter(FragmentManager fm) {
@@ -127,6 +132,4 @@ public class HomeActivity extends AppCompatActivity {
             return 4;
         }
     }
-
-
 }

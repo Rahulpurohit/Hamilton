@@ -11,6 +11,17 @@ import java.util.List;
 
 public class PropertiesList implements Parcelable {
 
+    public static final Parcelable.Creator<PropertiesList> CREATOR = new Parcelable.Creator<PropertiesList>() {
+        @Override
+        public PropertiesList createFromParcel(Parcel source) {
+            return new PropertiesList(source);
+        }
+
+        @Override
+        public PropertiesList[] newArray(int size) {
+            return new PropertiesList[size];
+        }
+    };
     @SerializedName("status")
     @Expose
     private String status;
@@ -20,6 +31,15 @@ public class PropertiesList implements Parcelable {
     @SerializedName("msg")
     @Expose
     private String msg;
+
+    public PropertiesList() {
+    }
+
+    protected PropertiesList(Parcel in) {
+        this.status = in.readString();
+        this.data = in.createTypedArrayList(Datum.CREATOR);
+        this.msg = in.readString();
+    }
 
     public String getStatus() {
         return status;
@@ -45,15 +65,38 @@ public class PropertiesList implements Parcelable {
         this.msg = msg;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.status);
+        dest.writeTypedList(this.data);
+        dest.writeString(this.msg);
+    }
+
     public static class Datum implements Parcelable {
 
 
+        public static final Parcelable.Creator<Datum> CREATOR = new Parcelable.Creator<Datum>() {
+            @Override
+            public Datum createFromParcel(Parcel source) {
+                return new Datum(source);
+            }
+
+            @Override
+            public Datum[] newArray(int size) {
+                return new Datum[size];
+            }
+        };
         @SerializedName("PropertyId")
         @Expose
         private Integer propertyId;
         @SerializedName("PropertyImage")
         @Expose
-        private String propertyImage;
+        private ArrayList<String> propertyImage;
         @SerializedName("PropertyUrl")
         @Expose
         private String propertyUrl;
@@ -97,6 +140,28 @@ public class PropertiesList implements Parcelable {
         @Expose
         private boolean islike;
 
+        public Datum() {
+        }
+
+        protected Datum(Parcel in) {
+            this.propertyId = (Integer) in.readValue(Integer.class.getClassLoader());
+            this.propertyImage = in.createStringArrayList();
+            this.propertyUrl = in.readString();
+            this.propertyDescription = in.readString();
+            this.propertyName = in.readString();
+            this.address = in.readParcelable(Address.class.getClassLoader());
+            this.noOfBathrooms = in.readString();
+            this.noOfBadrooms = in.readString();
+            this.noOfCars = in.readString();
+            this.surrounding = in.readString();
+            this.residential = in.readString();
+            this.homeTypes = in.readString();
+            this.price = in.readString();
+            this.toilet = in.readString();
+            this.size = in.readString();
+            this.islike = in.readByte() != 0;
+        }
+
         public Integer getPropertyId() {
             return propertyId;
         }
@@ -105,11 +170,11 @@ public class PropertiesList implements Parcelable {
             this.propertyId = propertyId;
         }
 
-        public String getPropertyImage() {
+        public ArrayList<String> getPropertyImage() {
             return propertyImage;
         }
 
-        public void setPropertyImage(String propertyImage) {
+        public void setPropertyImage(ArrayList<String> propertyImage) {
             this.propertyImage = propertyImage;
         }
 
@@ -233,7 +298,7 @@ public class PropertiesList implements Parcelable {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeValue(this.propertyId);
-            dest.writeString(this.propertyImage);
+            dest.writeStringList(this.propertyImage);
             dest.writeString(this.propertyUrl);
             dest.writeString(this.propertyDescription);
             dest.writeString(this.propertyName);
@@ -247,74 +312,7 @@ public class PropertiesList implements Parcelable {
             dest.writeString(this.price);
             dest.writeString(this.toilet);
             dest.writeString(this.size);
-            dest.writeValue(this.islike);
+            dest.writeByte(this.islike ? (byte) 1 : (byte) 0);
         }
-
-        public Datum() {
-        }
-
-        protected Datum(Parcel in) {
-            this.propertyId = (Integer) in.readValue(Integer.class.getClassLoader());
-            this.propertyImage = in.readString();
-            this.propertyUrl = in.readString();
-            this.propertyDescription = in.readString();
-            this.propertyName = in.readString();
-            this.address = in.readParcelable(Address.class.getClassLoader());
-            this.noOfBathrooms = in.readString();
-            this.noOfBadrooms = in.readString();
-            this.noOfCars = in.readString();
-            this.surrounding = in.readString();
-            this.residential = in.readString();
-            this.homeTypes = in.readString();
-            this.price = in.readString();
-            this.toilet = in.readString();
-            this.size = in.readString();
-            this.islike = (Boolean) in.readValue(Boolean.class.getClassLoader());
-        }
-
-        public static final Creator<Datum> CREATOR = new Creator<Datum>() {
-            @Override
-            public Datum createFromParcel(Parcel source) {
-                return new Datum(source);
-            }
-
-            @Override
-            public Datum[] newArray(int size) {
-                return new Datum[size];
-            }
-        };
     }
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.status);
-        dest.writeList(this.data);
-        dest.writeString(this.msg);
-    }
-
-    public PropertiesList() {
-    }
-
-    protected PropertiesList(Parcel in) {
-        this.status = in.readString();
-        this.data = new ArrayList<Datum>();
-        in.readList(this.data, Datum.class.getClassLoader());
-        this.msg = in.readString();
-    }
-
-    public static final Parcelable.Creator<PropertiesList> CREATOR = new Parcelable.Creator<PropertiesList>() {
-        @Override
-        public PropertiesList createFromParcel(Parcel source) {
-            return new PropertiesList(source);
-        }
-
-        @Override
-        public PropertiesList[] newArray(int size) {
-            return new PropertiesList[size];
-        }
-    };
 }
