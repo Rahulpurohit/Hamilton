@@ -181,7 +181,7 @@ public class PropertiesFragment extends Fragment {
 
                 if (mDialog.isShowing())
                     mDialog.dismiss();
-                Toast.makeText(getActivity(), getString(R.string.err_internet), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
 
                 Log.e("User data", "Error");
             }

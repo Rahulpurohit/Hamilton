@@ -63,7 +63,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final PropertiesList.Datum datum = data.get(position);
-        final String propertyImage = datum.getPropertyImage();
+        final String propertyImage = datum.getPropertyImage() != null ? datum.getPropertyImage().get(0) : "";
         if (!TextUtils.isEmpty(propertyImage)) {
             String url = propertyImage;
             GlideApp.with(holder.imgProperty.getContext())
