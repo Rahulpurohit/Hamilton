@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.AppCompatImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/img_property"
+    android:layout_width="match_parent"
+    android:layout_height="238dp"
+    android:scaleType="fitXY"
+    app:srcCompat="@drawable/image"
+    tools:showIn="@layout/activity_property_detail" />

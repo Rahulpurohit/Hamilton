@@ -3,11 +3,15 @@ package com.hamilton;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -20,9 +24,12 @@ import com.hamilton.modal.LikeUnlikeProperty;
 import com.hamilton.modal.PropertiesList;
 import com.hamilton.modal.error.BaseError;
 import com.hamilton.utility.Constants;
+import com.hamilton.utility.GlideApp;
 import com.hamilton.utility.Utils;
 import com.hamilton.view.TypefacedButton;
 import com.hamilton.view.TypefacedTextView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,8 +45,8 @@ public class PropertyDetailActivity extends AppCompatActivity {
     AppCompatImageView imgUserLike;
     @BindView(R.id.img_openBrowser)
     AppCompatImageView imgOpenBrowser;
-    @BindView(R.id.img_property)
-    AppCompatImageView imgProperty;
+    @BindView(R.id.imagePager)
+    ViewPager imagePager;
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
     @BindView(R.id.txt_bedrooms)
@@ -70,6 +77,9 @@ public class PropertyDetailActivity extends AppCompatActivity {
     @BindView(R.id.btn_email)
     TextView btnEmail;
 
+
+    @BindView(R.id.txtImgCount)
+    TextView txtImgCount;
     private PropertiesList.Datum datum;
 
     @Override
@@ -163,6 +173,27 @@ public class PropertyDetailActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        final ArrayList<String> propertyImage = datum.getPropertyImage();
+        final ViewPagerAdapter adapter = new ViewPagerAdapter(propertyImage);
+        imagePager.setAdapter(adapter);
+        txtImgCount.setText((1) + "/" + propertyImage.size());
+
+        imagePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                txtImgCount.setText((position + 1) + "/" + propertyImage.size());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     public void callToProperty(View view) {
@@ -177,4 +208,42 @@ public class PropertyDetailActivity extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_TEXT, datum.getAddress().getAddress());
         startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
+
+    private class ViewPagerAdapter extends PagerAdapter {
+        ArrayList<String> strings;
+
+        ViewPagerAdapter(ArrayList<String> strings) {
+            this.strings = strings;
+
+        }
+
+        @Override
+        public int getCount() {
+            return strings.size();
+        }
+
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            ImageView v = (ImageView) LayoutInflater.from(PropertyDetailActivity.this).inflate(R.layout.item_image, container, false);
+            String url = strings.get(position);
+            GlideApp.with(v.getContext())
+                    .load(url).placeholder(R.drawable.image)
+                    .into(v);
+            container.addView(v);
+            return v;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == ((View) object);
+        }
+    }
+
+
 }

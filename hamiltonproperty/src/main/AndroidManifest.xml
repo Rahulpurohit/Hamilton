@@ -21,7 +21,8 @@
         tools:overrideLibrary="mabbas007.tagsedittext">
         <activity
             android:name=".SplashActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
